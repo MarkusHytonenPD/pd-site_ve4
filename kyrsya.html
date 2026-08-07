@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyrsyän rantaosayleiskaava – PlanDisain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Gelasio:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img id="site-logo" src="logo-pd-transparent.png" alt="PlanDisain"></a>
+      <nav class="main-nav" aria-label="Päänavigaatio">
+        <a href="index.html#palvelut">Palvelut</a>
+        <a href="yritys.html">Yritys</a>
+        <a href="referenssit.html" >Referenssit</a>
+        <a href="yhteystiedot.html">Yhteystiedot</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Avaa valikko" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero page-hero--proj-2">
+      <div class="container">
+        <p class="eyebrow">Projekti · Sulkava</p>
+        <h1>Kyrsyän rantaosayleiskaava</h1>
+        <p class="hero-text">Noin 130 km²:n rantasuunnittelualue luoteisessa Sulkavassa. Valtuusto hyväksyi kaavan 5.5.2025.</p>
+        <span class="status-badge status-lainvoimainen">Lainvoimainen</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="section-kicker">Hankkeen kuvaus</p>
+          <h2>Kyrsyän rantaosayleiskaava</h2>
+        </div>
+
+        <p>Kyrsyän rantaosayleiskaava kattaa Sulkavan kunnan luoteisten alueiden kaavoittamattomat rannat. Suunnittelualue on noin 130 km², josta rantasuunnitteluvyöhyke noin 30 km².</p>
+        <p>Alueelle tehdään vuosittain lukuisia rakennuslupa- ja poikkeuslupahakemuksia, minkä vuoksi kattava kaavallinen ohjaus on tarpeen ympäristön ja virkistysarvojen turvaamiseksi.</p>
+        <p>Kunnanvaltuusto hyväksyi kaavan 5.5.2025. Hyväksymiskuulutus julkaistiin 14.5.2025 ja kaava on nyt lainvoimainen.</p>
+
+        <p style="margin-top: var(--space-5);">
+          <a class="button-secondary" href="https://www.plandisain.fi/kyrsya.html" target="_blank" rel="noopener">Avaa virallinen projekti-sivusto →</a>
+        </p>
+        <p style="margin-top: var(--space-3);">
+          <a class="button-text" href="referenssit.html">← Takaisin referensseihin</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-contact">
+        <p class="footer-kicker">Yhteystiedot</p>
+        <h2 class="footer-heading">Ota yhteyttä</h2>
+        <p><strong>Sähköposti:</strong> markus.hytonen@plandisain.fi</p>
+        <p><strong>Verkkosivut:</strong> www.plandisain.fi</p>
+      </div>
+      <p class="footer-copy">© PlanDisain</p>
+    </div>
+  </footer>
+  <script>
+    const header = document.querySelector('.site-header');
+    const hero = document.querySelector('.page-hero');
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    navToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.site-header')) {
+        mainNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', false);
+      }
+    });
+    window.addEventListener('scroll', () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const overWhite = heroBottom <= header.offsetHeight;
+      header.classList.toggle('scrolled', overWhite);
+    });
+  </script>
+</body>
+</html>

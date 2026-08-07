@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yhteystiedot – PlanDisain</title>
+  <meta name="description" content="Ota yhteyttä PlanDisainiin — markus.hytonen@plandisain.fi" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Gelasio:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><img id="site-logo" src="logo-pd-transparent.png" alt="PlanDisain"></a>
+      <nav class="main-nav" aria-label="Päänavigaatio">
+        <a href="index.html#palvelut">Palvelut</a>
+        <a href="yritys.html">Yritys</a>
+        <a href="referenssit.html">Referenssit</a>
+        <a href="yhteystiedot.html" aria-current="page">Yhteystiedot</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Avaa valikko" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero page-hero--yhteystiedot">
+      <div class="container">
+        <p class="eyebrow">Yhteystiedot</p>
+        <h1>Ota yhteyttä</h1>
+        <p class="hero-text">
+          Kerro projektistasi tai kysy lisää palveluistamme — vastataan nopeasti.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-info-block">
+          <div class="contact-item">
+            <h3>Sähköposti</h3>
+            <p><a href="mailto:markus.hytonen@plandisain.fi">markus.hytonen@plandisain.fi</a></p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Verkkosivut</h3>
+            <p><a href="https://www.plandisain.fi" target="_blank" rel="noopener">www.plandisain.fi</a></p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Palvelut</h3>
+            <ul class="feature-list" style="margin-top: var(--space-2);">
+              <li>Kaavoitus</li>
+              <li>Kehittäminen ja digitalisaatio</li>
+              <li>Vuorovaikutus</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© PlanDisain</p>
+    </div>
+  </footer>
+  <script>
+    const header = document.querySelector('.site-header');
+    const hero = document.querySelector('.page-hero');
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    navToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.site-header')) {
+        mainNav.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', false);
+      }
+    });
+    window.addEventListener('scroll', () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const overWhite = heroBottom <= header.offsetHeight;
+      header.classList.toggle('scrolled', overWhite);
+    });
+  </script>
+</body>
+</html>
