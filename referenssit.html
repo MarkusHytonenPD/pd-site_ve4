@@ -7,13 +7,13 @@
   <meta name="description" content="PlanDisainin referenssit: kaavoitus, maankäytön digitalisaatio ja vuorovaikutus yli 30 kunnassa." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Gelasio:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="logo"><img id="site-logo" src="logo-pd-transparent.png" alt="PlanDisain"></a>
+      <a href="index.html" class="logo"><img id="site-logo" src="logo-pd-wordmark.png" alt="PlanDisain" width="161" height="44"></a>
       <nav class="main-nav" aria-label="Päänavigaatio">
         <a href="index.html#palvelut">Palvelut</a>
         <a href="yritys.html">Yritys</a>
@@ -41,42 +41,109 @@
       <div class="container">
         <div class="ref-grid">
 
-          <div class="ref-category">
-            <span class="ref-category-label">Kaavoitus</span>
-            <h3>Yleis- ja asemakaavoitus</h3>
-            <p>
-              Yli 50 kaavaa yli 30 kuntaan. Rantaviivaa kaavoitettu yli 3 500 km,
-              erillisiä järviä kaavoissa yli 500 kpl. Muiden laatimia kaavoja
-              muutettu noin 2 000 km:n edestä.
-            </p>
+          <div class="ref-category card--media">
+            <figure class="card-media">
+              <picture>
+                <source srcset="ref-sarakasvi.webp" type="image/webp">
+                <img src="ref-sarakasvi.jpg" alt="Sarakasvillisuutta lammen rannalla" loading="lazy" width="800" height="451">
+              </picture>
+            </figure>
+            <div class="card-body">
+              <span class="ref-category-label">Kaavoitus</span>
+              <h3>Yleis- ja asemakaavoitus</h3>
+              <p>
+                Yli 50 kaavaa yli 30 kuntaan vuosina 2004–2025. Rantaviivaa
+                kaavoitettu yli 3 500 km, erillisiä järviä kaavoissa yli 500 kpl.
+                Muiden laatimia kaavoja muutettu noin 2 000 km:n edestä.
+              </p>
+              <ul class="ref-list">
+                <li>
+                  15 rantayleiskaavaa (MRL 72 §): mm. Kyrsyä, Suursaimaa,
+                  Ruotsalainen, Pyhäjärvi ja Orivesi
+                </li>
+                <li>
+                  20 ranta-asemakaavaa, pääosin Päijänteen ja Saimaan alueella
+                </li>
+                <li>
+                  10 yleiskaavaa, mm. Hollolan ja Pieksämäen strategiset
+                  yleiskaavat
+                </li>
+                <li>
+                  6 kylä- ja taajamayleiskaavaa sekä 4 hanketta
+                  asiantuntijaroolissa
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div class="ref-category">
-            <span class="ref-category-label">Digitalisaatio</span>
-            <h3>Maankäytön digitalisaatio</h3>
-            <p>
-              Kaavoituksen toimintamallien ja tiedonhallinnan kehittäminen.
-              Laaja-alaista asiantuntemusta digitaalisten ratkaisujen
-              käyttöönotosta ja määrittelystä.
-            </p>
-            <ul class="ref-list">
-              <li>Kansallinen kehittämistyö kaavoituksen digitalisoinnissa</li>
-              <li>Digitaalisten kaava-alustojen hyödyntäminen</li>
-            </ul>
+          <div class="ref-category card--media">
+            <figure class="card-media">
+              <picture>
+                <source srcset="ref-jarvi-kaupunki.webp" type="image/webp">
+                <img src="ref-jarvi-kaupunki.jpg" alt="Järvimaisema ja kaupungin rantarakentamista" loading="lazy" width="800" height="360">
+              </picture>
+            </figure>
+            <div class="card-body">
+              <span class="ref-category-label">Digitalisaatio</span>
+              <h3>Maankäytön digitalisaatio</h3>
+              <p>
+                17 maankäytön digitalisaation kehittämis- ja määrittelytehtävää
+                vuosina 2015–2024, projektipäällikkönä tai vahvassa
+                asiantuntijaroolissa. Painopiste maankäyttöpäätösten
+                tietomalleissa ja tiedon yhteentoimivuudessa.
+              </p>
+              <ul class="ref-list">
+                <li>
+                  Ympäristöministeriö: kaavamääräyskokoelma sekä
+                  maankäyttörajoitusten ja rakennusperinnön tietomallit
+                </li>
+                <li>
+                  Tulevaisuuden maankäyttöpäätökset 2030 — tiekartta
+                  päätöstietojen digitalisoinnille
+                </li>
+                <li>
+                  Kaavojen digitoinnin selvitys: kannattaako Suomen kaavat
+                  digitalisoida ja miten
+                </li>
+                <li>
+                  SYKE: OSKati-hanke ja VOOKA-pilotit Etelä- ja Pohjois-Savon
+                  kuntiin
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div class="ref-category">
-            <span class="ref-category-label">Vuorovaikutus</span>
-            <h3>Osallistuminen ja vuorovaikutus</h3>
-            <p>
-              Digitaaliset osallistumisen ratkaisut kaavahankkeissa.
-              Vuorovaikutus on kaavoituksessa merkittävässä roolissa —
-              PlanDisain tukee sen järjestämisessä.
-            </p>
-            <ul class="ref-list">
-              <li>Digitaaliset osallistumisalustat kaavahankkeissa</li>
-              <li>Asukaskyselyt ja palautekoosteet</li>
-            </ul>
+          <div class="ref-category card--media">
+            <figure class="card-media">
+              <picture>
+                <source srcset="ref-kuikka.webp" type="image/webp">
+                <img src="ref-kuikka.jpg" alt="Kuikka tyynellä järvellä" loading="lazy" width="800" height="451">
+              </picture>
+            </figure>
+            <div class="card-body">
+              <span class="ref-category-label">Vuorovaikutus</span>
+              <h3>Osallistuminen ja vuorovaikutus</h3>
+              <p>
+                Selkeät kaava-asiakirjat, yleisötilaisuudet ja kuhunkin
+                hankkeeseen sopiva osallistumisen tapa. Karttapalautepalveluista
+                suurissa kaavahankkeissa on kertynyt kokemus toimivista
+                käytännöistä ja teknisistä ratkaisuista.
+              </p>
+              <ul class="ref-list">
+                <li>
+                  Karttapalautejärjestelmä 14 kaavahankkeessa: mm. Ruotsalainen,
+                  Pyhäjärvi ja Hollolan strateginen yleiskaava
+                </li>
+                <li>
+                  Ympäristöministeriön tietomallitöiden vuorovaikutus kuudessa
+                  hankkeessa — kyselyt ja työpajat Miro- ja Mural-alustoilla
+                </li>
+                <li>
+                  Saavutettava vuorovaikutusalusta, joka pohjautuu Tampereen
+                  kaupungin avoimen lähdekoodin kehitystyöhön
+                </li>
+              </ul>
+            </div>
           </div>
 
         </div>
