@@ -87,6 +87,41 @@ img {
   display: block;
 }
 
+/* Näppäimistökäyttäjän oikotie navigaation ohi. Näkyy vain fokusoituna. */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 1100;
+  transform: translate(-50%, -140%);
+  padding: 0.7rem 1.25rem;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 14px rgba(16, 38, 56, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+  outline: 3px solid var(--color-accent-ink);
+  outline-offset: 2px;
+}
+
+/* Kiinteä yläpalkki on 76px korkea. Ilman tätä ankkurilinkin kohde jäisi
+   sen taakse, koska scroll-behavior: smooth vierittää kohteen ylälaitaan. */
+:target {
+  scroll-margin-top: 92px;
+}
+
+/* Skip-linkin kohde ei ole luonnostaan fokusoituva, joten se saa
+   tabindex="-1". Piilotetaan siitä syntyvä fokusreunus. */
+main:focus {
+  outline: none;
+}
+
 /* Piilottaa tekstin näkyvistä mutta jättää sen ruudunlukijoille ja hakukoneille. */
 .visually-hidden {
   position: absolute;
@@ -479,91 +514,6 @@ a {
   color: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 900px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-box {
-    flex-direction: column;
-  }
-
-  /* Kapeassa ruudussa aksenttikaista jäisi liian ohueksi.
-     Ensisijainen kortti on rajattu ulos: sen siltakuva näytetään kokonaan. */
-  .service-card.card--media:not(.service-card--primary) .card-media img {
-    aspect-ratio: 16 / 6;
-  }
-
-  .card-body {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 760px) {
-  .nav-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-
-  .nav-toggle span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
-    transition: transform 0.2s, opacity 0.2s;
-  }
-
-  .nav-toggle.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .nav-toggle.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  .header-inner {
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-  }
-
-  .main-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: rgba(14, 40, 65, 0.97);
-    padding: 1rem 1.5rem 1.5rem;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .main-nav.open {
-    display: flex;
-  }
-
-  .hero {
-    min-height: clamp(190px, 26vh, 260px);
-  }
-
-  .section {
-    padding: 4.5rem 0;
-  }
-}
 
 /* ---- Projekti-sivut ---- */
 
@@ -582,6 +532,12 @@ a {
   background: rgba(80, 200, 120, 0.18);
   color: #2e9e58;
   border: 1px solid rgba(80, 200, 120, 0.4);
+}
+
+.status-valmistelussa {
+  background: rgba(15, 158, 213, 0.12);
+  color: #0e6fa0;
+  border: 1px solid rgba(15, 158, 213, 0.3);
 }
 
 .project-section {
@@ -784,23 +740,6 @@ a {
   color: var(--color-text-soft);
 }
 
-@media (max-width: 900px) {
-  .project-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .project-sidebar {
-    position: static;
-  }
-
-  .doc-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .timeline-item {
-    grid-template-columns: 90px 1fr;
-  }
-}
 
 /* ---- Alasivut ---- */
 
@@ -1126,13 +1065,53 @@ a {
   color: var(--color-accent-ink);
 }
 
+
+/* ---- Taitekohdat ----
+   Nämä ovat tiedoston lopussa tarkoituksella: media query ei lisää
+   spesifisyyttä, joten sääntöjen on tultava LÄHDEJÄRJESTYKSESSÄ niiden
+   perussääntöjen jälkeen joita ne kumoavat. Kapeampi taitekohta viimeisenä. */
+
+/* Yksi 900px-taitekohta. Oli aiemmin neljänä erillisenä lohkona
+   eri puolilla tiedostoa, mikä teki ylläpidosta hankalaa. */
 @media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-box {
+    flex-direction: column;
+  }
+
+  /* Kapeassa ruudussa aksenttikaista jäisi liian ohueksi.
+     Ensisijainen kortti on rajattu ulos: sen siltakuva näytetään kokonaan. */
+  .service-card.card--media:not(.service-card--primary) .card-media img {
+    aspect-ratio: 16 / 6;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .project-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .project-sidebar {
+    position: static;
+  }
+
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    grid-template-columns: 90px 1fr;
+  }
+
   .project-ref-grid {
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 900px) {
   .ref-grid {
     grid-template-columns: 1fr;
   }
@@ -1144,5 +1123,71 @@ a {
   .stats-row {
     flex-wrap: wrap;
     gap: var(--space-4);
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(14, 40, 65, 0.97);
+    padding: 1rem 1.5rem 1.5rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .hero {
+    min-height: clamp(190px, 26vh, 260px);
+  }
+
+  .section {
+    padding: 4.5rem 0;
   }
 }
