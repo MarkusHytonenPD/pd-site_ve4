@@ -87,6 +87,14 @@ img {
   display: block;
 }
 
+/* Suomen yhdyssanat ovat pitkiä: "Kaavaluonnosasiakirjat",
+   "rantayleiskaavamuutos" ja "rakennusjärjestykseen" eivät mahdu 320px ruudun
+   riville, ja ilman tätä ne työnsivät koko sivun vaakasuunnassa yli. Katkaisu
+   tapahtuu vain kun sana ei muuten mahdu, joten normaali taitto ei muutu. */
+body {
+  overflow-wrap: break-word;
+}
+
 /* Näppäimistökäyttäjän oikotie navigaation ohi. Näkyy vain fokusoituna. */
 .skip-link {
   position: absolute;
@@ -530,7 +538,9 @@ a {
 
 .status-lainvoimainen {
   background: rgba(80, 200, 120, 0.18);
-  color: #2e9e58;
+  /* Oli #2e9e58, joka jäi omaa pilleritaustaansa vasten 2,99:1 kontrastiin.
+     Tämä on sama sävy tummempana: 5,49:1. */
+  color: #1b6e3b;
   border: 1px solid rgba(80, 200, 120, 0.4);
 }
 
@@ -538,6 +548,26 @@ a {
   background: rgba(15, 158, 213, 0.12);
   color: #0e6fa0;
   border: 1px solid rgba(15, 158, 213, 0.3);
+}
+
+/* Hyväksytty mutta ei vielä lainvoimainen: valtuuston päätös on tehty ja
+   valitusaika kesken. Kolmas tila tarvittiin, koska "Valmistelussa" antoi
+   väärän kuvan ja "Lainvoimainen" olisi ollut suoraan virheellinen. */
+.status-hyvaksytty {
+  background: rgba(214, 158, 46, 0.14);
+  color: #8a5a00;
+  border: 1px solid rgba(214, 158, 46, 0.4);
+}
+
+/* Samoja tilamerkkejä käytetään sekä vaaleilla korteilla että tumman
+   herokuvan päällä. Herolla läpikuultava värillinen tausta sekoittuu kuvaan,
+   jolloin tumma tekstiväri jää 1,4–2,8:1 kontrastiin. Virhe ei näy konsolissa
+   eikä silmämääräisesti — se löytyi mittaamalla pillerin pikselit selaimesta.
+   Herolla pilleri tehdään lähes läpinäkymättömäksi, jolloin sama tekstiväri
+   toimii molemmilla pinnoilla. */
+.page-hero .status-badge {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .project-section {
@@ -847,28 +877,6 @@ a {
   font-weight: 700;
 }
 
-.stats-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-5) var(--space-6);
-  margin-top: var(--space-6);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border);
-}
-
-.stat-number {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.88rem;
-  color: var(--color-text-soft);
-  margin-top: 0.3rem;
-}
-
 .ref-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1066,6 +1074,49 @@ a {
 }
 
 
+/* Nostolaatikko projektisivujen aikatauluille ja tiivistetyille tiedoille.
+   Oli aiemmin inline-tyylinä heinlansi.html:ssä; kun sama laatikko toistuu
+   seitsemällä projektisivulla, se kuuluu tyylitiedostoon. */
+.info-box {
+  margin-top: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.info-box .section-kicker {
+  margin: 0 0 var(--space-3);
+}
+
+.info-box .feature-list {
+  margin-top: 0;
+}
+
+/* Avaintiedot kaava-alueesta: nimi–arvo-pareja kahdessa sarakkeessa. */
+.fact-grid {
+  display: grid;
+  /* 260px pakottaa neljä avaintietoa 2x2-ruudukkoon 3+1:n sijaan. */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.fact-grid dt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-ink);
+}
+
+.fact-grid dd {
+  margin: 0.35rem 0 0;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+
 /* ---- Taitekohdat ----
    Nämä ovat tiedoston lopussa tarkoituksella: media query ei lisää
    spesifisyyttä, joten sääntöjen on tultava LÄHDEJÄRJESTYKSESSÄ niiden
@@ -1092,8 +1143,11 @@ a {
     padding: 1.5rem;
   }
 
+  /* minmax(0, 1fr) eikä 1fr: 1fr-radan automaattinen minimi on sisällön
+     min-content, joka työnsi sivupalkin 336px leveäksi 294px containerissa
+     ja rikkoi sivun vaakasuunnassa 320px ruudulla. */
   .project-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .project-sidebar {
@@ -1104,8 +1158,10 @@ a {
     grid-template-columns: 1fr;
   }
 
+  /* Sama syy kuin .project-layoutissa: 1fr-radan automaattinen minimi on
+     min-content, joka vuoti 320px ruudulla ulos containerista. */
   .timeline-item {
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 90px minmax(0, 1fr);
   }
 
   .project-ref-grid {
@@ -1118,11 +1174,6 @@ a {
 
   .contact-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stats-row {
-    flex-wrap: wrap;
-    gap: var(--space-4);
   }
 }
 

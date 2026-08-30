@@ -1,0 +1,10 @@
+# PlanDisain — pd-site_ve4
+# HUOM: robots.txt luetaan vain verkkotunnuksen JUURESTA. GitHub Pagesin
+# projektisivustolla tämä tiedosto on polussa /pd-site_ve4/robots.txt, jota
+# hakukoneet eivät lue — ohjaava tiedosto on markushytonenpd.github.io/robots.txt.
+# Tämä tulee voimaan sellaisenaan, kun sivusto siirtyy omaan verkkotunnukseen.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://markushytonenpd.github.io/pd-site_ve4/sitemap.xml
