@@ -255,24 +255,6 @@ a {
   max-width: 680px;
 }
 
-.button-primary {
-  display: inline-block;
-  padding: 0.95rem 1.35rem;
-  background: #fff;
-  color: var(--color-primary);
-  text-decoration: none;
-  border-radius: 999px;
-  font-weight: 700;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-}
-
-.button-primary:hover {
-  transform: translateY(-1px);
-  background: #eef4f8;
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.16);
-}
-
 .section {
   padding: var(--space-8) 0;
 }
@@ -328,8 +310,7 @@ a {
   border-width: 2px;
 }
 
-.service-card,
-.reference-card {
+.service-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -359,10 +340,6 @@ a {
   width: 100%;
   height: auto;
   object-fit: cover;
-}
-
-.reference-card.card--media .card-media img {
-  aspect-ratio: 16 / 10;
 }
 
 /* Referenssit-sivun kategoriakortit.
@@ -424,8 +401,7 @@ a {
   color: #fff;
 }
 
-.service-card h3,
-.reference-card h3 {
+.service-card h3 {
   margin-top: 0;
   margin-bottom: var(--space-3);
   color: var(--color-accent-ink);
@@ -433,41 +409,9 @@ a {
   font-size: 1.2rem;
 }
 
-.service-card p,
-.reference-card p {
+.service-card p {
   margin: 0;
   color: var(--color-text-soft);
-}
-
-.contact-section {
-  padding-top: 0;
-}
-
-.contact-box {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  color: #fff;
-  border-radius: 18px;
-  padding: 2.25rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-5);
-  box-shadow: var(--shadow-soft);
-}
-
-.contact-box h2 {
-  color: #fff;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.contact-box .section-kicker {
-  color: #c9dce9;
-}
-
-.contact-details p {
-  margin: 0 0 0.6rem;
-  color: rgba(255, 255, 255, 0.95);
 }
 
 .site-footer {
@@ -940,13 +884,6 @@ a {
   font-weight: 900;
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: var(--space-7);
-  align-items: start;
-}
-
 .contact-info-block {
   display: flex;
   flex-direction: column;
@@ -974,47 +911,6 @@ a {
 
 .contact-item a:hover {
   text-decoration: underline;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: var(--space-3);
-}
-
-.form-group label {
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 0.8rem 1rem;
-  border: 1.5px solid var(--color-border);
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 1rem;
-  color: var(--color-text);
-  background: var(--color-surface);
-  transition: border-color 0.15s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--color-accent-ink);
-}
-
-.form-group textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-.form-note {
-  font-size: 0.83rem;
-  color: var(--color-text-soft);
-  margin-top: var(--space-3);
 }
 
 .project-ref-grid {
@@ -1129,10 +1025,6 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .contact-box {
-    flex-direction: column;
-  }
-
   /* Kapeassa ruudussa aksenttikaista jäisi liian ohueksi.
      Ensisijainen kortti on rajattu ulos: sen siltakuva näytetään kokonaan. */
   .service-card.card--media:not(.service-card--primary) .card-media img {
@@ -1169,10 +1061,6 @@ a {
   }
 
   .ref-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-grid {
     grid-template-columns: 1fr;
   }
 }
