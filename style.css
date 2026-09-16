@@ -1033,23 +1033,6 @@ a {
   margin-top: 0;
 }
 
-/* Käynnissä olevan hankkeen noston tunniste ja tilamerkki samalle riville.
-   Molemmat on mitoitettu korttiin: .ref-category-label kantaa alamarginaalia
-   ja .status-badge 1,25 rem ylämarginaalia, joten ne eivät asettuisi samalle
-   riville ilman nollausta. */
-.ongoing-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
-}
-
-.ongoing-meta .ref-category-label,
-.ongoing-meta .status-badge {
-  margin: 0;
-}
-
 /* Linkit nostolaatikon feature-listassa. Ilman tätä ne perisivät listan
    harmaan tekstivärin (--color-text-soft) ja selaimen oletusalleviivauksen,
    eli näyttäisivät leipätekstiltä. Sivuston linkkityyli on tumma ja lihavoitu
