@@ -23,7 +23,7 @@
 
   /* Valikko sulkeutuu myös linkkiä painettaessa. Aiemmin sulkeutuminen
      kuunteli vain klikkauksia yläpalkin ULKOPUOLELLA, joten mobiilissa
-     saman sivun ankkuri (#palvelut) jätti valikon auki peittämään näkymän. */
+     saman sivun ankkuri (esim. #asiakirjat) jätti valikon auki peittämään näkymän. */
   mainNav.addEventListener('click', (e) => {
     if (e.target.closest('a')) closeNav();
   });
