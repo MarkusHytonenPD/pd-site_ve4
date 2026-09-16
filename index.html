@@ -14,9 +14,10 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="canonical" href="https://markushytonenpd.github.io/pd-site_ve4/" />
 
-  <!-- Jakolinkkien esikatselu. HUOM: og:url ja og:image ovat absoluuttisia
-       osoitteita — jos sivusto siirtyy omaan verkkotunnukseen, vaihda BASE
-       kaikista sivuista (12 kpl). -->
+  <!-- Jakolinkkien esikatselu. og:url ja og:image ovat absoluuttisia, koska
+       jakopalvelut (Facebook, Slack, LinkedIn) eivät aja JS:ää — näitä ei voi
+       koota site.js:ssä. Verkkotunnuksen vaihto EI käsin, vaan yhdellä
+       komennolla: python3 tyokalut/vaihda-base.py <uusi-base> --kirjoita -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PlanDisain" />
   <meta property="og:locale" content="fi_FI" />
@@ -226,7 +227,56 @@
           <h2>Kokemusta kaavoituksesta, digitalisaatiosta ja vuorovaikutuksesta</h2>
         </div>
 
-        <p>
+        <!-- Samat luvut kuin referenssit.html:n h1:ssä ja sivun JSON-LD:ssä.
+             Jos yhtä muuttaa, muuta kaikki kolme — ristiriita rakennedatan ja
+             näkyvän sisällön välillä on Googlelle virhe. -->
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-number">yli 50</span>
+            <span class="stat-label">kaavaa vuosina 2004&#8211;2025</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">yli 30</span>
+            <span class="stat-label">kuntaa asiakkaana</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">yli 3&#160;500&#160;km</span>
+            <span class="stat-label">kaavoitettua rantaviivaa</span>
+          </div>
+        </div>
+
+        <div class="project-ref-grid">
+
+          <a class="project-ref-card" href="suursaimaa.html">
+            <span class="ref-category-label">Osayleiskaava</span>
+            <h3>Suur-Saimaan osayleiskaava</h3>
+            <p class="project-kunta">Taipalsaari</p>
+            <p class="project-desc">Noin 270 km²:n suunnittelualue Suur-Saimaalla.</p>
+            <span class="status-badge status-hyvaksytty">Hyväksytty</span>
+            <span class="project-ref-link" style="margin-top:1rem;">Avaa projekti-sivusto →</span>
+          </a>
+
+          <a class="project-ref-card" href="ruotsalainen.html">
+            <span class="ref-category-label">Rantaosayleiskaava</span>
+            <h3>Ruotsalaisen rantaosayleiskaava</h3>
+            <p class="project-kunta">Asikkala</p>
+            <p class="project-desc">Noin 70 km²:n kaava-alue, rantaviivaa noin 180 km.</p>
+            <span class="status-badge status-hyvaksytty">Hyväksytty</span>
+            <span class="project-ref-link" style="margin-top:1rem;">Avaa projekti-sivusto →</span>
+          </a>
+
+          <a class="project-ref-card" href="pyhajarvi.html">
+            <span class="ref-category-label">Rantaosayleiskaava</span>
+            <h3>Pyhäjärven rantaosayleiskaava</h3>
+            <p class="project-kunta">Pieksämäki</p>
+            <p class="project-desc">Pyhäjärven ranta-alueiden maankäytön suunnittelu.</p>
+            <span class="status-badge status-lainvoimainen">Lainvoimainen</span>
+            <span class="project-ref-link" style="margin-top:1rem;">Avaa projekti-sivusto →</span>
+          </a>
+
+        </div>
+
+        <p style="margin-top: var(--space-5);">
           <a class="button-text" href="referenssit.html">Katso kaikki referenssit →</a>
         </p>
       </div>

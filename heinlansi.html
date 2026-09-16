@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="canonical" href="https://markushytonenpd.github.io/pd-site_ve4/heinlansi.html" />
 
-  <!-- Jakolinkkien esikatselu. HUOM: og:url ja og:image ovat absoluuttisia
-       osoitteita — jos sivusto siirtyy omaan verkkotunnukseen, vaihda BASE
-       kaikista sivuista (12 kpl). -->
+  <!-- Jakolinkkien esikatselu. og:url ja og:image ovat absoluuttisia, koska
+       jakopalvelut (Facebook, Slack, LinkedIn) eivät aja JS:ää — näitä ei voi
+       koota site.js:ssä. Verkkotunnuksen vaihto EI käsin, vaan yhdellä
+       komennolla: python3 tyokalut/vaihda-base.py <uusi-base> --kirjoita -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="PlanDisain" />
   <meta property="og:locale" content="fi_FI" />

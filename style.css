@@ -938,6 +938,15 @@ a {
   box-shadow: 0 18px 40px rgba(16, 38, 56, 0.12);
 }
 
+/* Kortti on pystysuora flex-container, jonka align-items on oletuksena
+   stretch. Se kumoaa pillereiden inline-blockin ja venytti ne kortin koko
+   leveydelle — "HYVÄKSYTTY" näytti palkilta, ei merkiltä. Virhe ei näy
+   konsolissa, vain kuvakaappauksesta. */
+.project-ref-card .ref-category-label,
+.project-ref-card .status-badge {
+  align-self: flex-start;
+}
+
 .project-ref-card .ref-category-label {
   margin-bottom: var(--space-2);
 }
@@ -967,6 +976,40 @@ a {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-accent-ink);
+}
+
+/* Etusivun referenssinostot: kolme lukua otsikon ja projektikorttien väliin.
+   auto-fit hoitaa taittumisen ilman omaa taitekohtaa — kolme saraketta mahtuu
+   noin 600 px containeriin, sen alle kaksi ja lopuksi yksi. minmax-alaraja on
+   180 px eikä 0, jotta "yli 3 500 km" ei jää kahdelle riville. */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.stat {
+  border-top: 2px solid var(--color-accent-ink);
+  padding-top: var(--space-3);
+}
+
+.stat-number {
+  display: block;
+  font-family: 'Gelasio', serif;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  line-height: 1.1;
+  /* Vaalea pinta (--color-bg) -> accent-ink, ei accent. Kirkas turkoosi jäisi
+     tässä 2:1 kontrastiin. */
+  color: var(--color-accent-ink);
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
 }
 
 
