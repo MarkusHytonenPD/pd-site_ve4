@@ -418,9 +418,20 @@ a {
   margin-top: var(--space-7);
   background:
     linear-gradient(180deg, rgba(14, 40, 65, 0.68), rgba(14, 40, 65, 0.80)),
-    var(--img-footer) center 40% / cover no-repeat;
+    var(--footer-img, var(--img-footer)) center 40% / cover no-repeat;
   color: rgba(255, 255, 255, 0.88);
 }
+
+/* Sivukohtainen alatunnisteen kuva, sama kuvio kuin .page-hero-varianteissa:
+   muuttuja fallbackilla perussäännössä ja arvo varianttiluokassa. Tarvitaan
+   koska .site-footer on kaikkien 12 sivun yhteinen -- --img-footer-muuttujan
+   vaihtaminen olisi muuttanut kuvan joka sivulta.
+
+   Luokan nimi viittaa valokuvaan: --img-proj-5 on hero-kaislikko.jpg. Heinäveden
+   läntisen sivut käyttävät samaa kuvaa sekä ylä- että alaherossa, eli sivu alkaa
+   ja päättyy samaan valokuvaan. Rajaus jää alatunnisteen omaksi (center 40%),
+   koska se on sovitettu alatunnisteen matalampaan laatikkoon eikä heron. */
+.site-footer--kaislikko { --footer-img: var(--img-proj-5); }
 
 .footer-inner {
   min-height: 238px;
