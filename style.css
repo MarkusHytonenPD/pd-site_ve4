@@ -745,6 +745,24 @@ a {
 .page-hero--proj-4        { --page-hero-img: var(--img-proj-4); }
 .page-hero--proj-5        { --page-hero-img: var(--img-proj-5); }
 
+/* Kickerin väri kahdella vaaleimmalla herokuvalla.
+
+   .eyebrow on #d5e4ef ja 13,6px lihavoitua, eli AA:n normaalitekstiä jolle
+   raja on 4,5:1 (18,66px lihavoitu olisi vasta isoa tekstiä). Kahden kuvan
+   yläreuna on niin vaalea että raja jää alle -- mitattu piilottamalla tekstit
+   ja ottamalla taustan 99. persentiilin luminanssi eli pahin kohta:
+
+     hero-heinavesi.jpg    4,13:1 -> 5,36:1   (heinitaryk, suursaimaa)
+     hero-kalliosaari.jpg  4,16:1 -> 5,40:1   (referenssit)
+
+   Sääntö on sidottu herovarianttiin eikä sivuun, koska syy on kuvassa. Muut
+   yhdeksän herokuvaa ovat 5,66-9,74:1 eikä niiden ilmettä muuteta -- siksi
+   tässä ei nosteta .eyebrow'n väriä globaalisti. */
+.page-hero--heinavesi .eyebrow,
+.page-hero--referenssit .eyebrow {
+  color: #fff;
+}
+
 .page-hero h1 {
   margin: 0 0 var(--space-3);
   font-size: clamp(2rem, 3.5vw, 3rem);
