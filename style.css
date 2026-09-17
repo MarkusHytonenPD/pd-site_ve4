@@ -729,6 +729,12 @@ a {
 }
 
 /* Sivukohtaiset herokuvat — asetetaan sectionin luokalla */
+/* Varianttien nimet viittaavat VALOKUVAAN, eivät sivuun johon ne on kytketty:
+   --heinavesi tarkoittaa hero-heinavesi.jpg:tä ja on siksi yhtä lailla kelpo
+   valinta Taipalsaaren sivulle. Kytkennät ovat HTML:ssä, joten kuvan vaihto
+   sivulta toiselle tehdään luokkaa vaihtamalla — ei tätä lohkoa muokkaamalla,
+   koska --heinavesi on kahden sivun yhteinen (heinitaryk ja suursaimaa) ja sen
+   background-position kuuluu kuvaan, ei sivuun. */
 .page-hero--yritys        { --page-hero-img: var(--img-hero-yritys); background-position: center 28%; }
 .page-hero--referenssit   { --page-hero-img: var(--img-hero-referenssit); }
 .page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); }
