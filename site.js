@@ -33,31 +33,40 @@
   });
 
   if (header && hero) {
-    /* Alasivuilla palkin tausta on sivun oma herokuva ja -sävy, ei etusivun
-       järvikuva. Kopioidaan laskennalliset arvot, jotta sivukohtaiset
-       muunnelmat (esim. yritys-sivun kevyempi sävy) tulevat mukaan sellaisinaan. */
-    if (hero.classList.contains('page-hero')) {
-      const heroStyle = getComputedStyle(hero);
-      header.style.setProperty('--header-bg', heroStyle.backgroundImage);
-      header.style.setProperty('--header-bg-pos', heroStyle.backgroundPosition);
-    }
-
-    /* Palkki muuttuu läpinäkymättömäksi heti kun herotekstit alkavat liukua sen
-       alle. Aiemmin raja oli koko heron alareuna, joten palkki oli läpinäkyvä
-       koko heron matkan ja tekstit menivät logon ja valikon kanssa päällekkäin.
-       Etusivun herossa ei ole näkyvää tekstiä, joten siellä raja on yhä alareuna. */
-    /* Herotekstit alkavat heti palkin alareunan alta (.page-hero:n yläpadding
-       on palkin korkeus + 4.5rem, ja laatikko alkaa -76px), joten käytännössä
-       raja on ensimmäinen vieritetty pikseli. Lasketaan se silti tekstin
-       paikasta, ettei raja hajoa jos paddingia muutetaan. */
-    const heroText = hero.querySelector('.container');
-    const syncHeader = () => {
-      const scrolledPast = heroText
-        ? window.scrollY > Math.max(0,
-            heroText.getBoundingClientRect().top + window.scrollY - header.offsetHeight)
-        : hero.getBoundingClientRect().bottom <= header.offsetHeight;
-      header.classList.toggle('scrolled', scrolledPast);
+    /* Palkin taustalla on heron kopio (.site-header::before), joka on yhtä
+       suuri kuin hero ja siirretään niin, että palkki näyttää täsmälleen ne
+       heron pikselit jotka ovat sen alla -- palkki näyttää läpinäkyvältä mutta
+       peittää alle liukuvat herotekstit. Kun heron alareuna saavuttaa palkin,
+       kopio lukittuu ja heron alaosa jää palkiksi. Kuvaa tai väriä ei vaihdeta
+       missään vaiheessa, joten välähdystä ei synny.
+       Laskennalliset arvot kopioidaan, jotta sivukohtaiset muunnelmat
+       (rajaus, yritys-sivun kevyempi sävy) tulevat mukaan sellaisinaan. */
+    const copyHero = () => {
+      const cs = getComputedStyle(hero);
+      header.style.setProperty('--hero-bg', cs.backgroundImage);
+      header.style.setProperty('--hero-bg-pos', cs.backgroundPosition);
+      header.style.setProperty('--hero-bg-size', cs.backgroundSize);
+      header.style.setProperty('--hero-h', hero.offsetHeight + 'px');
+      header.style.setProperty('--header-h', header.offsetHeight + 'px');
     };
+
+    /* Alasivuilla lukitus heron alareunaan. Etusivun gradientti haipuu alas
+       lähes läpinäkyväksi (0,14), joten alareuna olisi valikolle liian vaalea
+       (kontrasti 3,6-4,9:1). Siellä lukitaan heti alkuun: palkkiin jää heron
+       tumma yläosa (0,70), sama tummansininen kuin ennenkin. */
+    const lockAtTop = !hero.classList.contains('page-hero');
+    const syncHeader = () => {
+      const lockAt = lockAtTop
+        ? -hero.offsetTop
+        : hero.offsetHeight - header.offsetHeight;
+      const behind = -hero.getBoundingClientRect().top;   // heron rivi palkin yläreunassa
+      header.style.setProperty('--hero-top', Math.min(behind, lockAt) + 'px');
+      /* varjo vasta kun palkki on lukittu ja sivua on vieritetty */
+      header.classList.toggle('scrolled', window.scrollY > 0 && behind >= lockAt);
+    };
+
+    window.addEventListener('resize', () => { copyHero(); syncHeader(); });
+    copyHero();
     window.addEventListener('scroll', syncHeader, { passive: true });
     syncHeader();   /* myös heti latauksessa, jos sivu avataan ankkuriin */
   }

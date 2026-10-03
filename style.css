@@ -172,18 +172,33 @@ a {
   right: 0;
   z-index: 1000;
   background: transparent;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
-/* Vieritetty palkki saa sivun oman herokuvan ja -sävyn: site.js kopioi ne
-   .page-hero'n laskennallisista arvoista muuttujiin. Etusivulla (.hero) ei
-   kopioida, koska sen gradientti haipuu alas lähes läpinäkyväksi -- siellä
-   käytetään oletusta eli järvikuvaa ja --hero-tint-lightia. */
-.site-header.scrolled {
-  background-image: var(--header-bg, var(--hero-tint-light), var(--img-hero));
-  background-position: var(--header-bg-pos, center bottom);
-  background-size: cover;
+/* Heron kopio palkin taustana -- ks. site.js. Laatikko on heron kokoinen,
+   jotta cover ja background-position piirtävät kuvan täsmälleen samoin kuin
+   herossa. translate siirtää oikean rivin palkin kohdalle ja clip-path rajaa
+   näkyviin vain palkin korkeuden. clip-path eikä overflow: hidden, koska
+   mobiilivalikko on palkin sisällä ja roikkuu sen alapuolelle. */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--hero-h, 0px);
+  background-image: var(--hero-bg, none);
+  background-position: var(--hero-bg-pos, center);
+  background-size: var(--hero-bg-size, cover);
   background-repeat: no-repeat;
+  transform: translateY(calc(-1 * var(--hero-top, 0px)));
+  clip-path: inset(var(--hero-top, 0px) 0
+    calc(var(--hero-h, 0px) - var(--hero-top, 0px) - var(--header-h, 76px)) 0);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.site-header.scrolled {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
