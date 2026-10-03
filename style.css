@@ -41,7 +41,7 @@
 
   /* Taustakuvat. WebP-versiot otetaan käyttöön alla olevassa @supports-lohkossa. */
   --img-hero: url('hero-jarvi.jpg');
-  --img-hero-yritys: url('hero-suo-aamu.jpg');
+  --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
   --img-hero-yhteystiedot: url('hero-usva-jarvi.jpg');
   --img-band: url('band-soutaja.jpg');
@@ -57,7 +57,7 @@
 @supports (background-image: image-set(url('hero-jarvi.webp') type('image/webp'))) {
   :root {
     --img-hero: image-set(url('hero-jarvi.webp') type('image/webp'), url('hero-jarvi.jpg') type('image/jpeg'));
-    --img-hero-yritys: image-set(url('hero-suo-aamu.webp') type('image/webp'), url('hero-suo-aamu.jpg') type('image/jpeg'));
+    --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
     --img-hero-yhteystiedot: image-set(url('hero-usva-jarvi.webp') type('image/webp'), url('hero-usva-jarvi.jpg') type('image/jpeg'));
     --img-band: image-set(url('band-soutaja.webp') type('image/webp'), url('band-soutaja.jpg') type('image/jpeg'));
@@ -758,7 +758,7 @@ a {
    sivulta toiselle tehdään luokkaa vaihtamalla — ei tätä lohkoa muokkaamalla,
    koska --heinavesi on kahden sivun yhteinen (heinitaryk ja suursaimaa) ja sen
    background-position kuuluu kuvaan, ei sivuun. */
-.page-hero--yritys        { --page-hero-img: var(--img-hero-yritys); background-position: center 28%; }
+.page-hero--yritys        { --page-hero-img: var(--img-hero-yritys); background-position: center; }
 .page-hero--referenssit   { --page-hero-img: var(--img-hero-referenssit); }
 .page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); }
 .page-hero--heinavesi     { --page-hero-img: var(--img-heinavesi); background-position: center 95%; }

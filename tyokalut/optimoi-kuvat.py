@@ -41,10 +41,10 @@ TAUSTAKUVAT = {
     # .site-footer: 0,68-0,80 tumma peitto -> artefaktit eivät näy
     "footer-suo": (1400, 60),
     # .page-hero: var(--hero-tint) 0,60-0,70.
-    # hero-suo-aamu oli sivuston raskain tiedosto (165 kt 1400 px:ssä): usva ja
-    # heinikko ovat kalliita pakata. 1100 px venyttää 1440 px ikkunassa 1,31x,
-    # mutta mitattu ero renderöinnin JÄLKEEN on 1,8 / 255 eli näkymätön.
-    "hero-suo-aamu": (1100, 58),
+    # hero-heinikko-heijastus on panoraama (alkuperäinen 2108x378). Hero on
+    # 1440 px:ssä 4,6:1 eli korkeusrajattu (kuva 1734 px leveä), 1920 px:ssä
+    # 6,2:1 eli leveysrajattu. 1800 px ei venytä 1440:ssä lainkaan.
+    "hero-heinikko-heijastus": (1800, 66),
     "hero-syysranta": (1400, 64),
     "hero-kalliosaari": (1400, 66),
     "hero-suokasvit": (1400, 66),
