@@ -51,7 +51,7 @@ TAUSTAKUVAT = {
     "hero-kalliosaari": (1400, 66),
     "hero-suokasvit": (1400, 66),
     "hero-usvaranta": (1400, 66),
-    "hero-riippusilta": (1400, 66),
+    "hero-kaislat-syksy": (1400, 66),
     "hero-kuusikko": (1400, 66),
     "hero-kaislikko": (1400, 66),
     "hero-heinavesi": (1400, 66),
