@@ -39,7 +39,9 @@ JPG_LAATU = 78  # vain vanhojen selainten varafallback, ei kriittinen
 # venytetään joka tapauksessa. Laatu perustuu gradientin peittoon style.css:ssä.
 TAUSTAKUVAT = {
     # .site-footer: 0,68-0,80 tumma peitto -> artefaktit eivät näy
-    "footer-suo": (1400, 60),
+    # footer-rantapuut on panoraama (2400x459). Alatunniste on 1440 px:ssä
+    # 1440x394 eli korkeusrajattu -> kuva näkyy ~2060 px leveänä. Siksi 2100.
+    "footer-rantapuut": (2100, 60),
     # .page-hero: var(--hero-tint) 0,60-0,70.
     # hero-heinikko-heijastus on panoraama (alkuperäinen 2108x378). Hero on
     # 1440 px:ssä 4,6:1 eli korkeusrajattu (kuva 1734 px leveä), 1920 px:ssä
@@ -49,7 +51,7 @@ TAUSTAKUVAT = {
     "hero-kalliosaari": (1400, 66),
     "hero-suokasvit": (1400, 66),
     "hero-usvaranta": (1400, 66),
-    "hero-usva-jarvi": (1400, 66),
+    "hero-riippusilta": (1400, 66),
     "hero-kuusikko": (1400, 66),
     "hero-kaislikko": (1400, 66),
     "hero-heinavesi": (1400, 66),

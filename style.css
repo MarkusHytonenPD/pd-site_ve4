@@ -43,9 +43,9 @@
   --img-hero: url('hero-jarvi.jpg');
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
-  --img-hero-yhteystiedot: url('hero-usva-jarvi.jpg');
+  --img-hero-yhteystiedot: url('hero-riippusilta.jpg');
   --img-band: url('band-soutaja.jpg');
-  --img-footer: url('footer-suo.jpg');
+  --img-footer: url('footer-rantapuut.jpg');
   --img-proj-1: url('hero-syysranta.jpg');
   --img-proj-2: url('hero-suokasvit.jpg');
   --img-proj-3: url('hero-usvaranta.jpg');
@@ -59,9 +59,9 @@
     --img-hero: image-set(url('hero-jarvi.webp') type('image/webp'), url('hero-jarvi.jpg') type('image/jpeg'));
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
-    --img-hero-yhteystiedot: image-set(url('hero-usva-jarvi.webp') type('image/webp'), url('hero-usva-jarvi.jpg') type('image/jpeg'));
+    --img-hero-yhteystiedot: image-set(url('hero-riippusilta.webp') type('image/webp'), url('hero-riippusilta.jpg') type('image/jpeg'));
     --img-band: image-set(url('band-soutaja.webp') type('image/webp'), url('band-soutaja.jpg') type('image/jpeg'));
-    --img-footer: image-set(url('footer-suo.webp') type('image/webp'), url('footer-suo.jpg') type('image/jpeg'));
+    --img-footer: image-set(url('footer-rantapuut.webp') type('image/webp'), url('footer-rantapuut.jpg') type('image/jpeg'));
     --img-proj-1: image-set(url('hero-syysranta.webp') type('image/webp'), url('hero-syysranta.jpg') type('image/jpeg'));
     --img-proj-2: image-set(url('hero-suokasvit.webp') type('image/webp'), url('hero-suokasvit.jpg') type('image/jpeg'));
     --img-proj-3: image-set(url('hero-usvaranta.webp') type('image/webp'), url('hero-usvaranta.jpg') type('image/jpeg'));
@@ -427,20 +427,10 @@ a {
   margin-top: var(--space-7);
   background:
     linear-gradient(180deg, rgba(14, 40, 65, 0.68), rgba(14, 40, 65, 0.80)),
-    var(--footer-img, var(--img-footer)) center 40% / cover no-repeat;
+    var(--img-footer) center top / cover no-repeat;
   color: rgba(255, 255, 255, 0.88);
 }
 
-/* Sivukohtainen alatunnisteen kuva, sama kuvio kuin .page-hero-varianteissa:
-   muuttuja fallbackilla perussäännössä ja arvo varianttiluokassa. Tarvitaan
-   koska .site-footer on kaikkien 12 sivun yhteinen -- --img-footer-muuttujan
-   vaihtaminen olisi muuttanut kuvan joka sivulta.
-
-   Luokan nimi viittaa valokuvaan: --img-proj-5 on hero-kaislikko.jpg. Heinäveden
-   läntisen sivut käyttävät samaa kuvaa sekä ylä- että alaherossa, eli sivu alkaa
-   ja päättyy samaan valokuvaan. Rajaus jää alatunnisteen omaksi (center 40%),
-   koska se on sovitettu alatunnisteen matalampaan laatikkoon eikä heron. */
-.site-footer--kaislikko { --footer-img: var(--img-proj-5); }
 
 .footer-inner {
   min-height: 238px;
@@ -758,9 +748,11 @@ a {
    sivulta toiselle tehdään luokkaa vaihtamalla — ei tätä lohkoa muokkaamalla,
    koska --heinavesi on kahden sivun yhteinen (heinitaryk ja suursaimaa) ja sen
    background-position kuuluu kuvaan, ei sivuun. */
-.page-hero--yritys        { --page-hero-img: var(--img-hero-yritys); background-position: center; }
+.page-hero--yritys        { --page-hero-img: var(--img-hero-yritys); background-position: center;
+                            /* Kevyempi sävy, jotta heijastusten syysvärit näkyvät */
+                            --hero-tint: linear-gradient(180deg, rgba(14, 40, 65, 0.30), rgba(14, 40, 65, 0.45)); }
 .page-hero--referenssit   { --page-hero-img: var(--img-hero-referenssit); }
-.page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); }
+.page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); background-position: center 35%; }
 .page-hero--heinavesi     { --page-hero-img: var(--img-heinavesi); background-position: center 95%; }
 .page-hero--proj-1        { --page-hero-img: var(--img-proj-1); }
 .page-hero--proj-2        { --page-hero-img: var(--img-proj-2); }
@@ -777,12 +769,14 @@ a {
 
      hero-heinavesi.jpg    4,13:1 -> 5,36:1   (heinitaryk, suursaimaa)
      hero-kalliosaari.jpg  4,16:1 -> 5,40:1   (referenssit)
+     hero-riippusilta.jpg  4,17:1 -> 5,42:1   (yhteystiedot; kirkas iltataivas)
 
    Sääntö on sidottu herovarianttiin eikä sivuun, koska syy on kuvassa. Muut
-   yhdeksän herokuvaa ovat 5,66-9,74:1 eikä niiden ilmettä muuteta -- siksi
+   herokuvat ovat 5,66-9,74:1 eikä niiden ilmettä muuteta -- siksi
    tässä ei nosteta .eyebrow'n väriä globaalisti. */
 .page-hero--heinavesi .eyebrow,
-.page-hero--referenssit .eyebrow {
+.page-hero--referenssit .eyebrow,
+.page-hero--yhteystiedot .eyebrow {
   color: #fff;
 }
 
