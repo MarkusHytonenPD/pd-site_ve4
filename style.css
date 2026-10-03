@@ -458,14 +458,6 @@ a {
   color: var(--color-accent);
 }
 
-.footer-heading {
-  margin: 0 0 var(--space-3);
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  color: #fff;
-}
-
 .footer-contact p {
   margin: 0;
   font-size: 1.05rem;
