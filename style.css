@@ -752,7 +752,12 @@ a {
                             /* Kevyempi sävy, jotta heijastusten syysvärit näkyvät */
                             --hero-tint: linear-gradient(180deg, rgba(14, 40, 65, 0.30), rgba(14, 40, 65, 0.45)); }
 .page-hero--referenssit   { --page-hero-img: var(--img-hero-referenssit); }
-.page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); background-position: 72% top; }
+.page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); background-position: 72% top;
+                            /* Riippusilta täyttää kuvan ylimmät ~42 % (tornien huiput 7 %, kansi 39 %).
+                               Kuva on 16:9 ja leveysrajattu, joten näkyvä osuus = laatikon korkeus /
+                               (0,5625 x leveys). Ilman tätä 1920px ruudulla näkyi vain 31 % eli tornien
+                               huiput. 23,6vw = 42 %; vaikuttaa vasta yli 1440px, katto 560px. */
+                            min-height: min(23.6vw, 560px); }
 .page-hero--heinavesi     { --page-hero-img: var(--img-heinavesi); background-position: center 95%; }
 .page-hero--proj-1        { --page-hero-img: var(--img-proj-1); }
 .page-hero--proj-2        { --page-hero-img: var(--img-proj-2); }
@@ -1285,13 +1290,3 @@ a {
   }
 }
 
-/* Yhteystietojen riippusilta on kuvan yläpuoliskossa (tornien huiput 7 %,
-   kansi ~40 % korkeudesta). Leveällä ruudulla cover + top näyttää juuri sen,
-   mutta kapeammalla laatikko on suhteessa korkeampi ja vesi tulee näkyviin.
-   230 % korkeus näyttää kuvasta ylimmät ~45 %. Raja 1350px: sitä leveämmällä
-   230 % ei enää riittäisi leveyssuunnassa (340px laatikko -> 1390px kuva). */
-@media (max-width: 1350px) {
-  .page-hero--yhteystiedot {
-    background-size: cover, auto 230%;
-  }
-}
