@@ -33,11 +33,30 @@
   });
 
   if (header && hero) {
+    /* Alasivuilla palkin tausta on sivun oma herokuva ja -sävy, ei etusivun
+       järvikuva. Kopioidaan laskennalliset arvot, jotta sivukohtaiset
+       muunnelmat (esim. yritys-sivun kevyempi sävy) tulevat mukaan sellaisinaan. */
+    if (hero.classList.contains('page-hero')) {
+      const heroStyle = getComputedStyle(hero);
+      header.style.setProperty('--header-bg', heroStyle.backgroundImage);
+      header.style.setProperty('--header-bg-pos', heroStyle.backgroundPosition);
+    }
+
+    /* Palkki muuttuu läpinäkymättömäksi heti kun herotekstit alkavat liukua sen
+       alle. Aiemmin raja oli koko heron alareuna, joten palkki oli läpinäkyvä
+       koko heron matkan ja tekstit menivät logon ja valikon kanssa päällekkäin.
+       Etusivun herossa ei ole näkyvää tekstiä, joten siellä raja on yhä alareuna. */
+    /* Herotekstit alkavat heti palkin alareunan alta (.page-hero:n yläpadding
+       on palkin korkeus + 4.5rem, ja laatikko alkaa -76px), joten käytännössä
+       raja on ensimmäinen vieritetty pikseli. Lasketaan se silti tekstin
+       paikasta, ettei raja hajoa jos paddingia muutetaan. */
+    const heroText = hero.querySelector('.container');
     const syncHeader = () => {
-      header.classList.toggle(
-        'scrolled',
-        hero.getBoundingClientRect().bottom <= header.offsetHeight
-      );
+      const scrolledPast = heroText
+        ? window.scrollY > Math.max(0,
+            heroText.getBoundingClientRect().top + window.scrollY - header.offsetHeight)
+        : hero.getBoundingClientRect().bottom <= header.offsetHeight;
+      header.classList.toggle('scrolled', scrolledPast);
     };
     window.addEventListener('scroll', syncHeader, { passive: true });
     syncHeader();   /* myös heti latauksessa, jos sivu avataan ankkuriin */

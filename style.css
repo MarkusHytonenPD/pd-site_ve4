@@ -175,10 +175,15 @@ a {
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Vieritetty palkki saa sivun oman herokuvan ja -sävyn: site.js kopioi ne
+   .page-hero'n laskennallisista arvoista muuttujiin. Etusivulla (.hero) ei
+   kopioida, koska sen gradientti haipuu alas lähes läpinäkyväksi -- siellä
+   käytetään oletusta eli järvikuvaa ja --hero-tint-lightia. */
 .site-header.scrolled {
-  background:
-    var(--hero-tint-light),
-    var(--img-hero) center bottom / cover no-repeat;
+  background-image: var(--header-bg, var(--hero-tint-light), var(--img-hero));
+  background-position: var(--header-bg-pos, center bottom);
+  background-size: cover;
+  background-repeat: no-repeat;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
