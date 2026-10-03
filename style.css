@@ -43,7 +43,7 @@
   --img-hero: url('hero-jarvi.jpg');
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
-  --img-hero-yhteystiedot: url('hero-kaislat-syksy.jpg');
+  --img-hero-yhteystiedot: url('hero-kaislikko.jpg');
   --img-band: url('band-soutaja.jpg');
   --img-footer: url('footer-rantapuut.jpg');
   --img-proj-1: url('hero-syysranta.jpg');
@@ -59,7 +59,7 @@
     --img-hero: image-set(url('hero-jarvi.webp') type('image/webp'), url('hero-jarvi.jpg') type('image/jpeg'));
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
-    --img-hero-yhteystiedot: image-set(url('hero-kaislat-syksy.webp') type('image/webp'), url('hero-kaislat-syksy.jpg') type('image/jpeg'));
+    --img-hero-yhteystiedot: image-set(url('hero-kaislikko.webp') type('image/webp'), url('hero-kaislikko.jpg') type('image/jpeg'));
     --img-band: image-set(url('band-soutaja.webp') type('image/webp'), url('band-soutaja.jpg') type('image/jpeg'));
     --img-footer: image-set(url('footer-rantapuut.webp') type('image/webp'), url('footer-rantapuut.jpg') type('image/jpeg'));
     --img-proj-1: image-set(url('hero-syysranta.webp') type('image/webp'), url('hero-syysranta.jpg') type('image/jpeg'));
