@@ -257,7 +257,9 @@ a {
   /* Ei tummennusta: syyslehtikuvan tausta on itsessään tumma. */
   background: var(--img-hero) center 40% / cover no-repeat;
   color: #fff;
-  min-height: clamp(320px, 55vh, 620px);
+  /* Kaikki herot yhtä korkeita: Kokemus-sivun hero työpöydällä (näkyvissä
+     346px, loput 76px jää näkyvän alueen yläpuolelle). */
+  min-height: 422px;
   position: relative;
   overflow: hidden;
   margin-top: -76px;
@@ -746,6 +748,12 @@ a {
   margin-top: -76px;
   position: relative;
   overflow: hidden;
+  /* Sama korkeus kuin etusivun .hero; lyhyt sisältö keskitetään pystysuunnassa.
+     Pidempi sisältö (kaksirivinen otsikko + tilamerkki) saa kasvattaa heroa. */
+  min-height: 422px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Sivukohtaiset herokuvat — asetetaan sectionin luokalla */
@@ -1290,14 +1298,6 @@ a {
 
   .main-nav.open {
     display: flex;
-  }
-
-  /* Mobiilissa koko kuva näkyviin: korkeus kuvan omasta suhteesta (5472x3080)
-     + 76px, joka jää näkyvän alueen yläpuolelle. */
-  .hero {
-    min-height: calc(76px + 100vw * 3080 / 5472);
-    background-size: 100% auto;
-    background-position: center bottom;
   }
 
   .section {
