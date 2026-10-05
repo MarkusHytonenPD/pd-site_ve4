@@ -40,7 +40,7 @@
   --hero-tint-light: linear-gradient(180deg, rgba(14, 40, 65, 0.55), rgba(14, 40, 65, 0.65));
 
   /* Taustakuvat. WebP-versiot otetaan käyttöön alla olevassa @supports-lohkossa. */
-  --img-hero: url('hero-aronia.jpg');
+  --img-hero: url('hero-runko-heijastus.jpg');
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
   --img-hero-yhteystiedot: url('hero-kaislikko.jpg');
@@ -54,9 +54,9 @@
   --img-heinavesi: url('hero-heinavesi.jpg');
 }
 
-@supports (background-image: image-set(url('hero-aronia.webp') type('image/webp'))) {
+@supports (background-image: image-set(url('hero-runko-heijastus.webp') type('image/webp'))) {
   :root {
-    --img-hero: image-set(url('hero-aronia.webp') type('image/webp'), url('hero-aronia.jpg') type('image/jpeg'));
+    --img-hero: image-set(url('hero-runko-heijastus.webp') type('image/webp'), url('hero-runko-heijastus.jpg') type('image/jpeg'));
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
     --img-hero-yhteystiedot: image-set(url('hero-kaislikko.webp') type('image/webp'), url('hero-kaislikko.jpg') type('image/jpeg'));
@@ -254,18 +254,23 @@ a {
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
    Navigaatio on siis näkyvällä rivillä 0-76px eli laatikon rivillä 76-152px. */
 .hero {
-  /* Aronian oksa vastavalossa, ei tummennusta: metsätausta on tumma.
-     Tiedosto on rajattu alkuperäisen riveille 10-75 % (marjat jäävät pois;
-     lehdet ja marjat eivät mahdu yhtä aikaa 260px korkeaan näkymään).
-     --t = kuvan kohta (osuutena korkeudesta), joka osuu näkyvän alueen
-     yläreunaan; 0,25 näyttää koko oksan. Valikon kontrasti mitattu
-     0,10-0,25 välillä 6,3-10,4:1 kaikilla leveyksillä.
-     Leveys vähintään 1000px, jotta kuva ulottuu heron alareunaan:
-     korkeus 0,366 * leveys, ja (1 - 0,25) * korkeus >= 260px. */
+  /* Kaatuneen rungon heijastus. --t = kuvan kohta (osuutena korkeudesta),
+     joka osuu näkyvän alueen yläreunaan. Vesi on keskisävyistä sinistä,
+     joten valikon taakse (ei koko yläreunaan) pehmeä soikea varjo:
+     keskikohta containerin oikeasta reunasta --nav-center verran
+     vasemmalle, pystysuunnassa palkin keskellä (laatikon 76 + 38px).
+     Leveys vähintään 780px: korkeus 0,45 * leveys, (1 - t) * korkeus >= 260. */
   --t: 0.25;
-  --iw: max(100vw, 1000px);
-  --ih: calc(var(--iw) * 2002 / 5472);
-  background: var(--img-hero) center calc(76px - var(--t) * var(--ih)) / var(--iw) auto no-repeat;
+  --iw: max(100vw, 780px);
+  --ih: calc(var(--iw) * 1816 / 4032);
+  --nav-center: 145px;
+  --nav-shadow-w: 470px;
+  --nav-shadow: 0.55;
+  background:
+    radial-gradient(ellipse var(--nav-shadow-w) 72px
+      at calc(100% - (100% - min(92%, var(--container))) / 2 - var(--nav-center)) 114px,
+      rgba(9, 25, 41, var(--nav-shadow)), rgba(9, 25, 41, 0)),
+    var(--img-hero) center calc(76px - var(--t) * var(--ih)) / var(--iw) auto no-repeat;
   color: #fff;
   /* 25 % matalampi kuin alasivujen herot (näkyvissä 260px, loput 76px jää
      näkyvän alueen yläpuolelle). */
@@ -1195,35 +1200,6 @@ a {
    spesifisyyttä, joten sääntöjen on tultava LÄHDEJÄRJESTYKSESSÄ niiden
    perussääntöjen jälkeen joita ne kumoavat. Kapeampi taitekohta viimeisenä. */
 
-/* Etusivun hero 761-799px: täysi valikko on leveä ja "Yritys" osuisi
-   kirkkaaseen lehteen (2,6:1) -> kuvaa ylemmäs, valikko tummalle metsälle. */
-@media (min-width: 761px) and (max-width: 799px) {
-  .hero {
-    --t: 0.18;
-  }
-}
-
-/* Leveällä ruudulla kuva suurenee ja oksa painuisi näkyvän alueen alle
-   -> kuvaa ylemmäs (valikko pysyy tummalla, mitattu 0,30-0,35). */
-@media (min-width: 1700px) {
-  .hero {
-    --t: 0.30;
-  }
-}
-
-@media (min-width: 2200px) {
-  .hero {
-    --t: 0.35;
-  }
-}
-
-/* Ultraleveä: 0,35 osuu "Yritys"-kohdassa auringon heijastukseen (1,3-1,8:1) */
-@media (min-width: 2900px) {
-  .hero {
-    --t: 0.28;
-  }
-}
-
 /* Yksi 900px-taitekohta. Oli aiemmin neljänä erillisenä lohkona
    eri puolilla tiedostoa, mikä teki ylläpidosta hankalaa. */
 @media (max-width: 900px) {
@@ -1283,6 +1259,12 @@ a {
 }
 
 @media (max-width: 760px) {
+  /* Varjo valikkokuvakkeen taakse */
+  .hero {
+    --nav-center: 22px;
+    --nav-shadow-w: 90px;
+  }
+
 
   .nav-toggle {
     display: flex;
