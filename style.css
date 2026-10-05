@@ -252,22 +252,29 @@ a {
    HUOM gradientin pikselirajat: margin-top -76px nostaa laatikon yläreunan
    76px näkyvän alueen yläpuolelle, ja yläpalkki peittää seuraavat 76px.
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
-   Siksi tumma kaista on kohdassa 76-152px — navigaation takana. Männyt ja
-   järvi -kuvan taivas on vaalea: ilman kaistaa valikko 1,0-1,5:1, varjo
-   pelkän valikon takana 3,4-6,0:1, kaista 0,70 -> 5,2-7,1:1. */
+   Navigaatio on siis näkyvällä rivillä 0-76px eli laatikon rivillä 76-152px. */
 .hero {
-  /* Männyt ja järvi. Kuvan yläreuna kiinnitetään näkyvän alueen yläreunaan
-     (76px, heron yläreuna on sen verran näkyvän alueen yläpuolella), jotta
-     oksat, saaret ja vesi näkyvät; alareunan juurakko rajautuu leveällä
-     ruudulla pois. Leveys vähintään sen verran, että kuva täyttää näkyvän
-     260px korkeuden (260 * 1938/586 = 860px). */
-  background:
-    linear-gradient(180deg,
-      rgba(9, 25, 41, 0) 0,
-      rgba(9, 25, 41, 0.70) 76px,
-      rgba(9, 25, 41, 0.62) 152px,
-      rgba(9, 25, 41, 0) 240px),
-    var(--img-hero) center 76px / max(100%, 860px) auto no-repeat;
+  /* Männyt ja järvi ilman tummennusta. Kuvassa ainoa valikkorivin kokoinen
+     yhtenäisen tumma alue on kaukaisen rannan metsä (kuvatiedostossa
+     x 1150-1680 / 2000, keskikohta x 1415 = 0,7075 ja y 180 = 0,09
+     leveydestä). Kuva skaalataan ja siirretään niin, että metsä osuu
+     jokaisella leveydellä valikon taakse:
+       --nav-c   valikon keskikohta (containerin oikea reuna - 135px)
+       --hero-w  kuvan leveys: vähintään 1400px
+                 (metsäkaista 0,265w; 1200px:llä "Yhteystiedot" jäi reunalle
+                 3,6:1, 1400px:llä kaista 370px > valikko ~270px) ja niin leveä,
+                 ettei kumpaankaan reunaan jää aukkoa (vasen: x-siirto <= 0,
+                 oikea: (1 - 0,7075) * leveys >= ruudun leveys - --nav-c)
+     Pystysuunnassa metsä valikkotekstin keskelle: näkyvä y 37px = laatikon
+     113px (heron yläreuna on 76px näkyvän alueen yläpuolella).
+     Tiedosto on rajattu alkuperäisestä (20200807_193516.jpg) riveille
+     120-820 / 2000-mittakaavassa; muut rivit eivät näy millään leveydellä. */
+  --nav-c: calc(100vw - (100vw - min(92vw, var(--container))) / 2 - 135px);
+  --hero-w: max(1400px, calc(var(--nav-c) / 0.7075), calc((100vw - var(--nav-c)) / 0.2925));
+  background: var(--img-hero)
+    calc(var(--nav-c) - 0.7075 * var(--hero-w))
+    calc(113px - 0.09 * var(--hero-w))
+    / var(--hero-w) auto no-repeat;
   color: #fff;
   /* 25 % matalampi kuin alasivujen herot (näkyvissä 260px, loput 76px jää
      näkyvän alueen yläpuolelle). */
@@ -1256,10 +1263,12 @@ a {
 }
 
 @media (max-width: 760px) {
-  /* Varjo valikkokuvakkeen taakse */
+  /* Metsä valikkokuvakkeen taakse; kuvake on kapea, joten 1400px:n
+     vähimmäisleveyttä ei tarvita. 900px pitää kuvan alareunan heron
+     alareunan alapuolella (113 - 0,09w + 0,35w >= 336). */
   .hero {
-    --nav-center: 22px;
-    --nav-shadow-w: 90px;
+    --nav-c: calc(100vw - 4vw - 22px);
+    --hero-w: max(900px, calc(var(--nav-c) / 0.7075), calc((100vw - var(--nav-c)) / 0.2925));
   }
 
   .nav-toggle {
