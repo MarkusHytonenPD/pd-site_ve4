@@ -40,7 +40,7 @@
   --hero-tint-light: linear-gradient(180deg, rgba(14, 40, 65, 0.55), rgba(14, 40, 65, 0.65));
 
   /* Taustakuvat. WebP-versiot otetaan käyttöön alla olevassa @supports-lohkossa. */
-  --img-hero: url('hero-mannyt-jarvi.jpg');
+  --img-hero: url('hero-aronia.jpg');
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
   --img-hero-yhteystiedot: url('hero-kaislikko.jpg');
@@ -54,9 +54,9 @@
   --img-heinavesi: url('hero-heinavesi.jpg');
 }
 
-@supports (background-image: image-set(url('hero-mannyt-jarvi.webp') type('image/webp'))) {
+@supports (background-image: image-set(url('hero-aronia.webp') type('image/webp'))) {
   :root {
-    --img-hero: image-set(url('hero-mannyt-jarvi.webp') type('image/webp'), url('hero-mannyt-jarvi.jpg') type('image/jpeg'));
+    --img-hero: image-set(url('hero-aronia.webp') type('image/webp'), url('hero-aronia.jpg') type('image/jpeg'));
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
     --img-hero-yhteystiedot: image-set(url('hero-kaislikko.webp') type('image/webp'), url('hero-kaislikko.jpg') type('image/jpeg'));
@@ -254,27 +254,18 @@ a {
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
    Navigaatio on siis näkyvällä rivillä 0-76px eli laatikon rivillä 76-152px. */
 .hero {
-  /* Männyt ja järvi ilman tummennusta. Kuvassa ainoa valikkorivin kokoinen
-     yhtenäisen tumma alue on kaukaisen rannan metsä (kuvatiedostossa
-     x 1150-1680 / 2000, keskikohta x 1415 = 0,7075 ja y 180 = 0,09
-     leveydestä). Kuva skaalataan ja siirretään niin, että metsä osuu
-     jokaisella leveydellä valikon taakse:
-       --nav-c   valikon keskikohta (containerin oikea reuna - 135px)
-       --hero-w  kuvan leveys: vähintään 1400px
-                 (metsäkaista 0,265w; 1200px:llä "Yhteystiedot" jäi reunalle
-                 3,6:1, 1400px:llä kaista 370px > valikko ~270px) ja niin leveä,
-                 ettei kumpaankaan reunaan jää aukkoa (vasen: x-siirto <= 0,
-                 oikea: (1 - 0,7075) * leveys >= ruudun leveys - --nav-c)
-     Pystysuunnassa metsä valikkotekstin keskelle: näkyvä y 37px = laatikon
-     113px (heron yläreuna on 76px näkyvän alueen yläpuolella).
-     Tiedosto on rajattu alkuperäisestä (20200807_193516.jpg) riveille
-     120-820 / 2000-mittakaavassa; muut rivit eivät näy millään leveydellä. */
-  --nav-c: calc(100vw - (100vw - min(92vw, var(--container))) / 2 - 135px);
-  --hero-w: max(1400px, calc(var(--nav-c) / 0.7075), calc((100vw - var(--nav-c)) / 0.2925));
-  background: var(--img-hero)
-    calc(var(--nav-c) - 0.7075 * var(--hero-w))
-    calc(113px - 0.09 * var(--hero-w))
-    / var(--hero-w) auto no-repeat;
+  /* Aronian oksa vastavalossa, ei tummennusta: metsätausta on tumma.
+     Tiedosto on rajattu alkuperäisen riveille 10-75 % (marjat jäävät pois;
+     lehdet ja marjat eivät mahdu yhtä aikaa 260px korkeaan näkymään).
+     --t = kuvan kohta (osuutena korkeudesta), joka osuu näkyvän alueen
+     yläreunaan; 0,25 näyttää koko oksan. Valikon kontrasti mitattu
+     0,10-0,25 välillä 6,3-10,4:1 kaikilla leveyksillä.
+     Leveys vähintään 1000px, jotta kuva ulottuu heron alareunaan:
+     korkeus 0,366 * leveys, ja (1 - 0,25) * korkeus >= 260px. */
+  --t: 0.25;
+  --iw: max(100vw, 1000px);
+  --ih: calc(var(--iw) * 2002 / 5472);
+  background: var(--img-hero) center calc(76px - var(--t) * var(--ih)) / var(--iw) auto no-repeat;
   color: #fff;
   /* 25 % matalampi kuin alasivujen herot (näkyvissä 260px, loput 76px jää
      näkyvän alueen yläpuolelle). */
@@ -1204,6 +1195,35 @@ a {
    spesifisyyttä, joten sääntöjen on tultava LÄHDEJÄRJESTYKSESSÄ niiden
    perussääntöjen jälkeen joita ne kumoavat. Kapeampi taitekohta viimeisenä. */
 
+/* Etusivun hero 761-799px: täysi valikko on leveä ja "Yritys" osuisi
+   kirkkaaseen lehteen (2,6:1) -> kuvaa ylemmäs, valikko tummalle metsälle. */
+@media (min-width: 761px) and (max-width: 799px) {
+  .hero {
+    --t: 0.18;
+  }
+}
+
+/* Leveällä ruudulla kuva suurenee ja oksa painuisi näkyvän alueen alle
+   -> kuvaa ylemmäs (valikko pysyy tummalla, mitattu 0,30-0,35). */
+@media (min-width: 1700px) {
+  .hero {
+    --t: 0.30;
+  }
+}
+
+@media (min-width: 2200px) {
+  .hero {
+    --t: 0.35;
+  }
+}
+
+/* Ultraleveä: 0,35 osuu "Yritys"-kohdassa auringon heijastukseen (1,3-1,8:1) */
+@media (min-width: 2900px) {
+  .hero {
+    --t: 0.28;
+  }
+}
+
 /* Yksi 900px-taitekohta. Oli aiemmin neljänä erillisenä lohkona
    eri puolilla tiedostoa, mikä teki ylläpidosta hankalaa. */
 @media (max-width: 900px) {
@@ -1263,13 +1283,6 @@ a {
 }
 
 @media (max-width: 760px) {
-  /* Metsä valikkokuvakkeen taakse; kuvake on kapea, joten 1400px:n
-     vähimmäisleveyttä ei tarvita. 900px pitää kuvan alareunan heron
-     alareunan alapuolella (113 - 0,09w + 0,35w >= 336). */
-  .hero {
-    --nav-c: calc(100vw - 4vw - 22px);
-    --hero-w: max(900px, calc(var(--nav-c) / 0.7075), calc((100vw - var(--nav-c)) / 0.2925));
-  }
 
   .nav-toggle {
     display: flex;
