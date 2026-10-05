@@ -254,27 +254,11 @@ a {
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
    Siksi tumma kaista ulottuu 140px:ään asti — se on navigaation takana. */
 .hero {
-  /* Ei tummennusta: syyslehtikuvan tausta on itsessään tumma. Kuva alkaa
-     --leaf-shift verran vasemmasta reunasta, jotta lehdet siirtyvät oikealle
-     pois sinisen alta; väliin jäävä kaista on kuvan reunan omaa sinistä
-     (36,66,115). Kaistakin on kuvakerros eikä background-color, koska
-     site.js kopioi yläpalkin taustaksi vain background-imagen.
-     Vaaleampi sininen liukuväri logon taakse: logon oikea reuna =
-     containerin vasen reuna + 161px, haipuu ennen lehteä. */
-  --leaf-shift: 200px;
-  --logo-right: calc((100% - min(92%, var(--container))) / 2 + 161px);
-  --blue-fade: 160px;
-  background:
-    linear-gradient(90deg,
-      rgba(78, 120, 180, 0.80) 0,
-      rgba(78, 120, 180, 0.65) var(--logo-right),
-      rgba(78, 120, 180, 0) calc(var(--logo-right) + var(--blue-fade))),
-    /* kuvan vasen reuna häivytetään kaistaan, ettei saumaa näy */
-    linear-gradient(90deg,
-      rgb(36, 66, 115) var(--leaf-shift),
-      rgba(36, 66, 115, 0) calc(var(--leaf-shift) + 120px)),
-    var(--img-hero) var(--leaf-shift) 33% / max(calc(100% - var(--leaf-shift)), 598px) auto no-repeat,
-    linear-gradient(rgb(36, 66, 115), rgb(36, 66, 115));
+  /* Ei tummennusta. Kuva on koostettu: vasemmalla taivas logon takana,
+     häivytetty ennen vasenta lehteä (lähteet ja asetukset
+     tyokalut/koosta-etusivun-hero.py). Vasen reuna ankkuroituna, jotta
+     kapeassa ruudussa taivas pysyy logon takana eikä rajaudu pois. */
+  background: var(--img-hero) left 33% / cover no-repeat;
   color: #fff;
   /* 25 % matalampi kuin alasivujen herot (näkyvissä 260px, loput 76px jää
      näkyvän alueen yläpuolelle). */
@@ -1263,13 +1247,6 @@ a {
 }
 
 @media (max-width: 760px) {
-  /* Logo vie kapeasta ruudusta ison osan: kuva levenee coverin tavoin
-     (598px = 336px * 16/9) ja haivutus lyhenee, jotta sininen ei osu lehteen. */
-  .hero {
-    --leaf-shift: 60px;
-    --blue-fade: 40px;
-  }
-
   .nav-toggle {
     display: flex;
     flex-direction: column;
