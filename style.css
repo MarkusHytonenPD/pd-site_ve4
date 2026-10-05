@@ -254,15 +254,10 @@ a {
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
    Siksi tumma kaista ulottuu 140px:ään asti — se on navigaation takana. */
 .hero {
-  background:
-    linear-gradient(180deg,
-      rgba(9, 25, 41, 0.72) 0,
-      rgba(9, 25, 41, 0.70) 140px,
-      rgba(9, 25, 41, 0.18) 195px,
-      rgba(9, 25, 41, 0.14) 100%),
-    var(--img-hero) center 28% / cover no-repeat;
+  /* Ei tummennusta: syyslehtikuvan tausta on itsessään tumma. */
+  background: var(--img-hero) center 40% / cover no-repeat;
   color: #fff;
-  min-height: clamp(200px, 27vh, 300px);
+  min-height: clamp(320px, 55vh, 620px);
   position: relative;
   overflow: hidden;
   margin-top: -76px;
@@ -1297,8 +1292,12 @@ a {
     display: flex;
   }
 
+  /* Mobiilissa koko kuva näkyviin: korkeus kuvan omasta suhteesta (5472x3080)
+     + 76px, joka jää näkyvän alueen yläpuolelle. */
   .hero {
-    min-height: clamp(190px, 26vh, 260px);
+    min-height: calc(76px + 100vw * 3080 / 5472);
+    background-size: 100% auto;
+    background-position: center bottom;
   }
 
   .section {

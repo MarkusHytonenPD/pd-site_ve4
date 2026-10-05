@@ -50,10 +50,9 @@
       header.style.setProperty('--header-h', header.offsetHeight + 'px');
     };
 
-    /* Alasivuilla lukitus heron alareunaan. Etusivun gradientti haipuu alas
-       lähes läpinäkyväksi (0,14), joten alareuna olisi valikolle liian vaalea
-       (kontrasti 3,6-4,9:1). Siellä lukitaan heti alkuun: palkkiin jää heron
-       tumma yläosa (0,70), sama tummansininen kuin ennenkin. */
+    /* Alasivuilla lukitus heron alareunaan. Etusivulla lukitaan heti alkuun:
+       sen herossa ei ole tummennusta, ja kuvan tumma yläosa pitää valikon
+       luettavana (mitattu 11,7-15,9:1), kun alareunan lehdet eivät pitäisi. */
     const lockAtTop = !hero.classList.contains('page-hero');
     const syncHeader = () => {
       const lockAt = lockAtTop

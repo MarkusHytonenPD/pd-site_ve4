@@ -56,9 +56,9 @@ TAUSTAKUVAT = {
     "hero-heinavesi": (1400, 66),
     # .image-band: vain 0,45-0,60 -> kuva näkyy selvemmin
     "band-soutaja": (1400, 72),
-    # .hero: gradientti haipuu 0,72 -> 0,14, eli alaosa on lähes paljas.
-    # Sama tiedosto on myös .site-header.scrolled -taustana joka sivulla.
-    "hero-syyslehdet": (1400, 74),
+    # .hero: ei tummennusta ja hero on työpöydällä 55vh korkea, joten kuva
+    # näkyy paljaana ja suurena -> leveys 1920 ja laatu muita korkeampi.
+    "hero-syyslehdet": (1920, 76),
 }
 
 # nimi -> (kuvapinnan kuvasuhde CSS:ssä, webp-laatu)
