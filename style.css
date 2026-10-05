@@ -40,7 +40,7 @@
   --hero-tint-light: linear-gradient(180deg, rgba(14, 40, 65, 0.55), rgba(14, 40, 65, 0.65));
 
   /* Taustakuvat. WebP-versiot otetaan käyttöön alla olevassa @supports-lohkossa. */
-  --img-hero: url('hero-syyslehdet.jpg');
+  --img-hero: url('hero-silta-heijastus.jpg');
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
   --img-hero-yhteystiedot: url('hero-kaislikko.jpg');
@@ -54,9 +54,9 @@
   --img-heinavesi: url('hero-heinavesi.jpg');
 }
 
-@supports (background-image: image-set(url('hero-syyslehdet.webp') type('image/webp'))) {
+@supports (background-image: image-set(url('hero-silta-heijastus.webp') type('image/webp'))) {
   :root {
-    --img-hero: image-set(url('hero-syyslehdet.webp') type('image/webp'), url('hero-syyslehdet.jpg') type('image/jpeg'));
+    --img-hero: image-set(url('hero-silta-heijastus.webp') type('image/webp'), url('hero-silta-heijastus.jpg') type('image/jpeg'));
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
     --img-hero-yhteystiedot: image-set(url('hero-kaislikko.webp') type('image/webp'), url('hero-kaislikko.jpg') type('image/jpeg'));
@@ -254,11 +254,16 @@ a {
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
    Siksi tumma kaista ulottuu 140px:ään asti — se on navigaation takana. */
 .hero {
-  /* Ei tummennusta. Kuva on koostettu: vasemmalla taivas logon takana,
-     rajautuu vasemman lehden ääriviivaan (lähteet ja menetelmä
-     tyokalut/koosta-etusivun-hero.py). Vasen reuna ankkuroituna, jotta
-     kapeassa ruudussa taivas pysyy logon takana eikä rajaudu pois. */
-  background: var(--img-hero) left 33% / cover no-repeat;
+  /* Sillan heijastus ankkuroituna oikealle, jotta heijastuksen tummat puut
+     osuvat valikon taakse. Leveällä ruudulla kuvaa ei voi siirtää sivuttain,
+     joten valikon taakse (ei koko yläreunaan) pehmeä varjo. Keskikohta =
+     containerin oikea reuna - 135px, pystysuunnassa palkin keskellä (heron
+     yläreuna on 76px näkyvän alueen yläpuolella -> 76 + 38px). */
+  background:
+    radial-gradient(ellipse 380px 72px
+      at calc(100% - (100% - min(92%, var(--container))) / 2 - 135px) 114px,
+      rgba(9, 25, 41, 0.62), rgba(9, 25, 41, 0)),
+    var(--img-hero) right 50% / cover no-repeat;
   color: #fff;
   /* 25 % matalampi kuin alasivujen herot (näkyvissä 260px, loput 76px jää
      näkyvän alueen yläpuolelle). */
@@ -1247,12 +1252,6 @@ a {
 }
 
 @media (max-width: 760px) {
-  /* Kuvaa vasemmalle, jotta valikkokuvake osuu lehden/tumman taustan päälle
-     (taivasta vasten 2,9:1) ja logo jää silti taivaalle. */
-  .hero {
-    background-position: 30% 33%;
-  }
-
   .nav-toggle {
     display: flex;
     flex-direction: column;
