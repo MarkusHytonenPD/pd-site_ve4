@@ -254,12 +254,20 @@ a {
    Laatikon kohta 152px on siis vasta se kohta jossa kuva alkaa näkyä.
    Siksi tumma kaista ulottuu 140px:ään asti — se on navigaation takana. */
 .hero {
-  /* Ei tummennusta: syyslehtikuvan tausta on itsessään tumma. */
-  background: var(--img-hero) center 40% / cover no-repeat;
+  /* Ei tummennusta: syyslehtikuvan tausta on itsessään tumma. Vasemmalta
+     kuvan omaa sinistä (36,66,115) logon taakse asti, ettei logo jää
+     ruskealle pohjalle. Logon oikea reuna = containerin vasen reuna + 161px. */
+  --logo-right: calc((100% - min(92%, var(--container))) / 2 + 161px);
+  background:
+    linear-gradient(90deg,
+      rgba(36, 66, 115, 0.85) 0,
+      rgba(36, 66, 115, 0.70) var(--logo-right),
+      rgba(36, 66, 115, 0) calc(var(--logo-right) + min(360px, 25%))),
+    var(--img-hero) center 33% / cover no-repeat;
   color: #fff;
-  /* Kaikki herot yhtä korkeita: Kokemus-sivun hero työpöydällä (näkyvissä
-     346px, loput 76px jää näkyvän alueen yläpuolelle). */
-  min-height: 422px;
+  /* 25 % matalampi kuin alasivujen herot (näkyvissä 260px, loput 76px jää
+     näkyvän alueen yläpuolelle). */
+  min-height: 336px;
   position: relative;
   overflow: hidden;
   margin-top: -76px;
