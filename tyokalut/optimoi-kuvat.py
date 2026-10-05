@@ -58,7 +58,7 @@ TAUSTAKUVAT = {
     "band-soutaja": (1400, 72),
     # .hero: gradientti haipuu 0,72 -> 0,14, eli alaosa on lähes paljas.
     # Sama tiedosto on myös .site-header.scrolled -taustana joka sivulla.
-    "hero-jarvi": (1400, 74),
+    "hero-syyslehdet": (1400, 74),
 }
 
 # nimi -> (kuvapinnan kuvasuhde CSS:ssä, webp-laatu)

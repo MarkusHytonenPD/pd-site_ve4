@@ -40,7 +40,7 @@
   --hero-tint-light: linear-gradient(180deg, rgba(14, 40, 65, 0.55), rgba(14, 40, 65, 0.65));
 
   /* Taustakuvat. WebP-versiot otetaan käyttöön alla olevassa @supports-lohkossa. */
-  --img-hero: url('hero-jarvi.jpg');
+  --img-hero: url('hero-syyslehdet.jpg');
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
   --img-hero-yhteystiedot: url('hero-kaislikko.jpg');
@@ -54,9 +54,9 @@
   --img-heinavesi: url('hero-heinavesi.jpg');
 }
 
-@supports (background-image: image-set(url('hero-jarvi.webp') type('image/webp'))) {
+@supports (background-image: image-set(url('hero-syyslehdet.webp') type('image/webp'))) {
   :root {
-    --img-hero: image-set(url('hero-jarvi.webp') type('image/webp'), url('hero-jarvi.jpg') type('image/jpeg'));
+    --img-hero: image-set(url('hero-syyslehdet.webp') type('image/webp'), url('hero-syyslehdet.jpg') type('image/jpeg'));
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
     --img-hero-yhteystiedot: image-set(url('hero-kaislikko.webp') type('image/webp'), url('hero-kaislikko.jpg') type('image/jpeg'));
@@ -260,7 +260,7 @@ a {
       rgba(9, 25, 41, 0.70) 140px,
       rgba(9, 25, 41, 0.18) 195px,
       rgba(9, 25, 41, 0.14) 100%),
-    var(--img-hero) center 50% / cover no-repeat;
+    var(--img-hero) center 28% / cover no-repeat;
   color: #fff;
   min-height: clamp(200px, 27vh, 300px);
   position: relative;
