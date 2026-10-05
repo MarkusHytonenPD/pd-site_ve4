@@ -255,7 +255,7 @@ a {
    Siksi tumma kaista ulottuu 140px:ään asti — se on navigaation takana. */
 .hero {
   /* Ei tummennusta. Kuva on koostettu: vasemmalla taivas logon takana,
-     häivytetty ennen vasenta lehteä (lähteet ja asetukset
+     rajautuu vasemman lehden ääriviivaan (lähteet ja menetelmä
      tyokalut/koosta-etusivun-hero.py). Vasen reuna ankkuroituna, jotta
      kapeassa ruudussa taivas pysyy logon takana eikä rajaudu pois. */
   background: var(--img-hero) left 33% / cover no-repeat;
@@ -1247,6 +1247,12 @@ a {
 }
 
 @media (max-width: 760px) {
+  /* Kuvaa vasemmalle, jotta valikkokuvake osuu lehden/tumman taustan päälle
+     (taivasta vasten 2,9:1) ja logo jää silti taivaalle. */
+  .hero {
+    background-position: 30% 33%;
+  }
+
   .nav-toggle {
     display: flex;
     flex-direction: column;
