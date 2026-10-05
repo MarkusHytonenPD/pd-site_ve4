@@ -25,6 +25,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://markushytonenpd.github.io/pd-site_ve4/heinlansi-suunnittelualue.html</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://markushytonenpd.github.io/pd-site_ve4/kyrsya.html</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>

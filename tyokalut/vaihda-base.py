@@ -14,7 +14,7 @@ paikoissa joita ei voi tehdä suhteellisiksi eikä koota selaimessa:
 GitHub Pages ei aja palvelinpuolen koostamista (ei SSI:tä eikä templaatteja
 ilman Jekyll-rakennetta), ja Jekyllin _includes-rakenne rikkoisi sivujen
 avaamisen suoraan tiedostoina. Siksi keskitys = yksi komento joka kirjoittaa
-kaikki 84 esiintymää kerralla, ei käsityö 14 tiedostossa.
+kaikki esiintymät kerralla (92 kpl 15 tiedostossa 5.10.2026), ei käsityötä.
 
 KÄYTTÖ (kuivaharjoitus on oletus, mikään ei muutu ilman --kirjoita):
 
