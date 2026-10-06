@@ -54,6 +54,11 @@ TAUSTAKUVAT = {
     "hero-kuusikko": (1400, 66),
     "hero-kaislikko": (1400, 66),
     "hero-heinavesi": (1400, 66),
+    # hero-latu: latu-urat ovat raskasta pakattavaa (q66 = 192 kt), joten laatu
+    # lasketaan 58:aan (177 kt). Lähde on Lataukset/20211209_112855.jpg, jossa
+    # ladulla ollut henkilö on poistettu paikkaamalla kohta viereisellä
+    # metsällä (130 px vasemmalta) ennen pienennystä.
+    "hero-latu": (1400, 58),
     # .image-band: vain 0,45-0,60 -> kuva näkyy selvemmin
     "band-soutaja": (1400, 72),
     # .hero: ei tummennusta ja hero on työpöydällä 55vh korkea, joten kuva

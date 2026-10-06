@@ -37,6 +37,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://markushytonenpd.github.io/pd-site_ve4/markus-hytonen.html</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://markushytonenpd.github.io/pd-site_ve4/pyhajarvi.html</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>

@@ -44,6 +44,7 @@
   --img-hero-yritys: url('hero-heinikko-heijastus.jpg');
   --img-hero-referenssit: url('hero-kalliosaari.jpg');
   --img-hero-yhteystiedot: url('hero-kaislikko.jpg');
+  --img-hero-latu: url('hero-latu.jpg');
   --img-band: url('band-soutaja.jpg');
   --img-footer: url('footer-rantapuut.jpg');
   --img-proj-1: url('hero-syysranta.jpg');
@@ -60,6 +61,7 @@
     --img-hero-yritys: image-set(url('hero-heinikko-heijastus.webp') type('image/webp'), url('hero-heinikko-heijastus.jpg') type('image/jpeg'));
     --img-hero-referenssit: image-set(url('hero-kalliosaari.webp') type('image/webp'), url('hero-kalliosaari.jpg') type('image/jpeg'));
     --img-hero-yhteystiedot: image-set(url('hero-kaislikko.webp') type('image/webp'), url('hero-kaislikko.jpg') type('image/jpeg'));
+    --img-hero-latu: image-set(url('hero-latu.webp') type('image/webp'), url('hero-latu.jpg') type('image/jpeg'));
     --img-band: image-set(url('band-soutaja.webp') type('image/webp'), url('band-soutaja.jpg') type('image/jpeg'));
     --img-footer: image-set(url('footer-rantapuut.webp') type('image/webp'), url('footer-rantapuut.jpg') type('image/jpeg'));
     --img-proj-1: image-set(url('hero-syysranta.webp') type('image/webp'), url('hero-syysranta.jpg') type('image/jpeg'));
@@ -783,6 +785,7 @@ a {
                             --hero-tint: linear-gradient(180deg, rgba(14, 40, 65, 0.30), rgba(14, 40, 65, 0.45)); }
 .page-hero--referenssit   { --page-hero-img: var(--img-hero-referenssit); }
 .page-hero--yhteystiedot  { --page-hero-img: var(--img-hero-yhteystiedot); }
+.page-hero--latu          { --page-hero-img: var(--img-hero-latu); background-position: center 12%; }
 .page-hero--heinavesi     { --page-hero-img: var(--img-heinavesi); background-position: center 95%; }
 .page-hero--proj-1        { --page-hero-img: var(--img-proj-1); }
 .page-hero--proj-2        { --page-hero-img: var(--img-proj-2); }
@@ -945,27 +948,36 @@ a {
   font-weight: 900;
 }
 
+/* Yhteystiedot ovat herokuvan päällä, joten värit tummalle pinnalle.
+   --color-accent jäi kaislikkokuvaa vasten 3,4-3,7:1:een (mitattu taustan
+   99. persentiilin luminanssista), joten otsikoissa on sen vaalennettu sävy
+   (#a6e8ec, väh. 5,2:1). Otsikot ovat H2 (sivun H1 on piilotettu), jotta
+   otsikkotasoja ei hypätä. */
 .contact-info-block {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  margin-top: var(--space-5);
 }
 
-.contact-item h3 {
+.contact-item h2 {
   margin: 0 0 var(--space-2);
+  font-family: var(--font-body);
   font-size: 0.82rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-accent-ink);
+  color: #a6e8ec;
 }
 
 .contact-item p {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  color: #fff;
 }
 
 .contact-item a {
-  color: var(--color-primary);
+  color: #fff;
   text-decoration: none;
   font-weight: 600;
 }
@@ -1091,6 +1103,205 @@ a {
 
 .info-box .feature-list {
   margin-top: 0;
+}
+
+/* Perustajalta-osio (yritys.html). */
+/* Tumma osio sivuston perusvärillä (sama kuin yläpalkin ja alatunnisteen sävy).
+   Otsikon perusväri --color-accent-ink on tarkoitettu vaaleille pinnoille,
+   joten tässä otsikko on valkoinen. Painike käännetään vaaleaksi, koska tumma
+   painike katoaisi taustaan. */
+.section-founder {
+  background: var(--color-primary);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-founder h2 {
+  color: #fff;
+}
+
+.section-founder a {
+  color: #fff;
+}
+
+.section-founder .founder-signature {
+  color: #fff;
+}
+
+.section-founder .button-secondary {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.section-founder .button-secondary:hover {
+  background: var(--color-surface-soft);
+}
+
+/* Alatunnisteen margin-top jättäisi tumman osion ja tumman alatunnisteen väliin
+   vaalean kaistan. Poistetaan vain, kun tumma osio on sivun viimeinen. */
+main:has(> .section-founder:last-child) + .site-footer {
+  margin-top: 0;
+}
+
+/* Ei omaa korttipohjaa: valkoinen laatikko ei sopinut valokuvan kanssa
+   yhteen, joten teksti on suoraan osion taustalla. */
+.founder {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.founder-photo {
+  display: block;
+}
+
+.founder-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.founder-text p:first-child {
+  margin-top: 0;
+}
+
+.founder-text p:last-child {
+  margin-bottom: 0;
+}
+
+.founder-signature {
+  color: var(--color-primary);
+  font-size: 1.05rem;
+}
+
+/* Yhteystiedot-sivu on pelkkä hero: yhteystiedot kuvan päällä, ei alatunnistetta.
+   Hero täyttää ruudun. Laatikko alkaa 76 px näkyvän alueen yläpuolelta
+   (margin-top: -76px), joten korkeuteen lisätään 76 px. svh, jotta mobiilin
+   osoitepalkki ei aiheuta turhaa vieritystä; vh varalle. */
+.page-hero--contact {
+  min-height: calc(100vh + 76px);
+  min-height: calc(100svh + 76px);
+  text-align: center;
+}
+
+/* Ansioluettelo (markus-hytonen.html) */
+/* Huomautus Kokemus-sivun korttien alla: erottaa yrityksen referenssit henkilön CV:stä */
+.ref-note {
+  margin: var(--space-5) 0 0;
+  max-width: 760px;
+  color: var(--color-text-soft);
+}
+
+/* Profiilikuva on heron TAUSTAKERROS eikä <img>: yläpalkki on heron taustan
+   kopio (ks. site.js), joten vain taustakerroksena kuva jatkuu palkin kohdalle
+   valikkolinkkien taakse. Häivytys ja himmennys on leivottu tiedostoon
+   (tyokalut/tee-heron-profiilikuva.py), koska taustakerrokselle ei voi antaa
+   mask-imagea eikä filteriä.
+
+   Kerrokset ylhäältä alas: profiilikuva (yläosa lisätummennettu valikko-
+   linkkien luettavuuden vuoksi), heron tavallinen tummennus, latukuva.
+   Kuva on keskellä olevan puun oikealla puolella: puu on heron keskilinjalla,
+   ja calc(50% + 170px) asettaa 260 px leveän kuvan vasemman reunan 40 px
+   keskilinjan oikealle puolelle. Pystysijainti 106px on heron laatikossa, joka
+   alkaa 76 px näkyvän alueen yläpuolelta -> kuvan yläreuna 30 px ruudun
+   yläreunasta. */
+.page-hero--cv {
+  --cv-x: calc(50% + 170px);
+  --cv-y: 106px;
+  --cv-w: 260px;
+  background-image: url('markus-hytonen-hero.png'),
+    var(--hero-tint), var(--img-hero-latu);
+  background-image:
+    image-set(url('markus-hytonen-hero.webp') type('image/webp'), url('markus-hytonen-hero.png') type('image/png')),
+    var(--hero-tint), var(--img-hero-latu);
+  background-size: var(--cv-w) auto, auto, cover;
+  background-position: var(--cv-x) var(--cv-y), 0 0, center 12%;
+  background-repeat: no-repeat;
+  /* kuva 366 px korkea + häivytetty alareuna */
+  min-height: 540px;
+}
+
+/* Teksti vasempaan sarakkeeseen, oikea puolisko jää kuvalle */
+.person-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.page-hero .hero-text a {
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Pitkät hankelistat avattavina ryhminä. Summary on oma painikkeensa,
+   joten se saa näkyvän focus-renkaan näppäimistökäyttöä varten. */
+.cv-groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.cv-group {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.cv-group summary {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  border-radius: var(--radius);
+}
+
+.cv-group summary:focus-visible {
+  outline: 3px solid var(--color-accent-ink);
+  outline-offset: 2px;
+}
+
+.cv-group summary::marker {
+  color: var(--color-accent-ink);
+}
+
+.cv-group[open] summary {
+  border-bottom: 1px solid var(--color-border);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.cv-list {
+  padding: 1rem 1.25rem 1.25rem;
+  gap: 0.6rem;
+}
+
+.cv-list a {
+  color: var(--color-accent-ink);
+}
+
+.cv-years {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cv-note {
+  margin: 0.35rem 0 0;
+}
+
+.cv-sublist {
+  list-style: disc;
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.ref-list .cv-sublist li {
+  padding-left: 0;
+}
+
+.ref-list .cv-sublist li::before {
+  content: none;
 }
 
 /* Linkit nostolaatikon feature-listassa. Ilman tätä ne perisivät listan
@@ -1324,6 +1535,28 @@ a {
 
   .section {
     padding: 4.5rem 0;
+  }
+
+  /* Kuva tekstin yläpuolelle */
+  .founder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .founder-photo {
+    max-width: 240px;
+  }
+
+  /* Kuva oikeaan reunaan nimen yläpuolelle. Teksti työnnetään kuvan alle
+     yläpaddingilla: kuva on taustakerros eikä vie tilaa. */
+  .page-hero--cv {
+    --cv-w: 210px;
+    background-position: right 4vw top var(--cv-y), 0 0, center 12%;
+    min-height: 0;
+    padding-top: 400px;
+  }
+
+  .person-hero {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
