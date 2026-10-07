@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sivua ei löytynyt – PlanDisain</title>
+  <meta name="robots" content="noindex" />
+
+  <!-- Vanhan Weebly-sivuston (www.plandisain.fi, 2026 asti) osoitteet ohjataan
+       uusiin vastineisiin. GitHub Pages ei tee palvelinpuolen ohjauksia, mutta
+       näyttää tämän sivun jokaiselle puuttuvalle polulle, joten ohjaus tehdään
+       täällä. Ohjaus on <head>issa ennen tyylejä, jotta sivu ei ehdi välähtää.
+
+       Kaikki viittaukset ovat absoluuttisia, koska sivu näytetään missä tahansa
+       polussa (myös /blogi/x/), jolloin suhteelliset polut osoittaisivat väärin.
+       BASE vaihdetaan tyokalut/vaihda-base.py:llä kuten muillakin sivuilla. -->
+  <script>
+    (function () {
+      var BASE = "https://www.plandisain.fi/";
+      var OHJAUKSET = {
+        // Yritys ja palvelut
+        "yritysesittely": "yritys.html",
+        "laatu": "yritys.html",
+        "ympaumlristouml": "yritys.html",
+        "asiantuntemus": "index.html#palvelut",
+        "vuorovaikutusalusta": "index.html#vuorovaikutus",
+        "projekti-sivustot": "referenssit.html#vireilla",
+        "referenssit---kaavoitus": "referenssit.html",
+        "referenssit---maankaumlytoumln-digitalisaatio": "referenssit.html",
+        "referenssit---vuorovaikutus": "referenssit.html",
+        "rantayk": "referenssit.html",
+        "mallityo": "referenssit.html",
+        "salpatie5": "referenssit.html",
+        "teeriniemi": "referenssit.html",
+        "oravi": "referenssit.html",
+        "oravi-asiakirja": "referenssit.html",
+        "oravi-asiakirja-ehd": "referenssit.html",
+        "oravi-asiakirja-hyv": "referenssit.html",
+        "blogi": "index.html",
+        // Pyhäjärven rantaosayleiskaava
+        "royk-pyha": "pyhajarvi.html",
+        "royk-pyha-143786": "pyhajarvi.html",
+        "royk-pyha-143786-496090": "pyhajarvi.html",
+        "royk-pyha-602526": "pyhajarvi.html",
+        "royk-pyha-asiakjako": "pyhajarvi.html",
+        "royk-pyha-asiakirja": "pyhajarvi.html",
+        "royk-pyha-asiakirja-248947": "pyhajarvi.html",
+        "royk-pyha-asiakirja-248947-873446": "pyhajarvi.html",
+        "pyha_hyvaksynta": "pyhajarvi.html",
+        // Tahiniemi (royk-pyha-602526-195786 on Weeblyssä otsikoltaan Tahin OYK)
+        "oyk-tahin": "tahiniemi.html",
+        "tahin-143786-430281": "tahiniemi.html",
+        "tahin-143786-496090-864310": "tahiniemi.html",
+        "royk-pyha-602526-195786": "tahiniemi.html",
+        // Ruotsalaisen rantaosayleiskaava
+        "ryk-ruot": "ruotsalainen.html",
+        "ryk-ruot-asiakirja": "ruotsalainen.html",
+        "ryk-ruot-ehdotus1": "ruotsalainen.html",
+        "ryk-ruot-ehdotus2": "ruotsalainen.html",
+        "ryk-ruot-hyv": "ruotsalainen.html",
+        "ryk-ruot-luonnos": "ruotsalainen.html",
+        "ryk-ruot-tyo": "ruotsalainen.html",
+        "ryk-ruot-602526-195786-347204": "ruotsalainen.html",
+        "royk-ruot-143786-496090-901862": "ruotsalainen.html",
+        "royk-ruot-143786-737014": "ruotsalainen.html",
+        // Heinäveden itäiset alueet (suursaimaa_asiak-733218 on otsikoltaan Itäisten)
+        "heinitaryk-232784": "heinitaryk.html",
+        "heinitaryk-232784-276518": "heinitaryk.html",
+        "heinitaryk-232784-276518-383767": "heinitaryk.html",
+        "heinitaryk-asiakirjat": "heinitaryk.html",
+        "heinitaryk-asiakirjaluon": "heinitaryk.html",
+        "heinitaryk-asiakirjaehd": "heinitaryk.html",
+        "heinitaryk-asiakirjahyv": "heinitaryk.html",
+        "suursaimaa_asiak-733218": "heinitaryk.html",
+        // Suursaimaa
+        "suursaimaa_asiak": "suursaimaa.html",
+        "suursaimaa-mat": "suursaimaa.html",
+        "suursaimaa-luonnos": "suursaimaa.html",
+        "suursaimaa-ehdotus": "suursaimaa.html",
+        "suursaimaa-hyv": "suursaimaa.html",
+        // Muut
+        "kyrsya-580685": "kyrsya.html",
+        "heinlansi_uutiset": "heinlansi.html"
+      };
+      // "/ryk-ruot.html", "/ryk-ruot", "/blogi/tavoitteen-asettelua/" -> avain
+      var polku = location.pathname.replace(/^\/+|\/+$/g, "").replace(/\.html$/, "");
+      var kohde = OHJAUKSET[polku];
+      if (!kohde && /^blogi(\/|$)/.test(polku)) kohde = OHJAUKSET.blogi;
+      if (kohde) location.replace(BASE + kohde);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.plandisain.fi/style.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.plandisain.fi/favicon-32.png" />
+  <meta name="theme-color" content="#0e2841" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Siirry sisältöön</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="https://www.plandisain.fi/index.html" class="logo"><img id="site-logo" src="https://www.plandisain.fi/logo-pd-wordmark.png" alt="PlanDisain" width="161" height="44"></a>
+      <nav class="main-nav" aria-label="Päänavigaatio">
+        <a href="https://www.plandisain.fi/index.html">Palvelut</a>
+        <a href="https://www.plandisain.fi/yritys.html">Yritys</a>
+        <a href="https://www.plandisain.fi/referenssit.html">Kokemus</a>
+        <a href="https://www.plandisain.fi/yhteystiedot.html">Yhteystiedot</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Avaa valikko" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-hero page-hero--latu">
+      <div class="container">
+        <p class="eyebrow">404</p>
+        <h1>Sivua ei löytynyt</h1>
+        <p class="hero-text">PlanDisainin verkkosivut on uudistettu, ja osa vanhoista osoitteista on poistunut.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <p class="lead">
+          Vireillä olevien kaavahankkeiden sivut ja asiakirjat löytyvät
+          <a href="https://www.plandisain.fi/referenssit.html#vireilla">Kokemus-sivulta</a>.
+        </p>
+        <p>
+          Valmistuneiden kaavojen lopulliset asiakirjat löytyvät kunkin kunnan
+          verkkosivuilta. Jos etsit tiettyä asiakirjaa, ota yhteyttä:
+          <a href="https://www.plandisain.fi/yhteystiedot.html">yhteystiedot</a>.
+        </p>
+        <p><a href="https://www.plandisain.fi/index.html">Siirry etusivulle</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-contact">
+        <p class="footer-kicker">Yhteystiedot</p>
+        <p><strong>Sähköposti:</strong> <a href="mailto:markus.hytonen@plandisain.fi">markus.hytonen@plandisain.fi</a></p>
+        <p><strong>Puhelin:</strong> <a href="tel:+358407217527">040 721 7527</a></p>
+      </div>
+      <p class="footer-copy">© 2026 PlanDisain Oy · Y-tunnus: 3179120-4</p>
+    </div>
+  </footer>
+  <script src="https://www.plandisain.fi/site.js" defer></script>
+</body>
+</html>
