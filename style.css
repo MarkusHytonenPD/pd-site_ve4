@@ -1193,40 +1193,44 @@ main:has(> .section-founder:last-child) + .site-footer {
   color: var(--color-text-soft);
 }
 
-/* Profiilikuva on heron TAUSTAKERROS eikä <img>: yläpalkki on heron taustan
-   kopio (ks. site.js), joten vain taustakerroksena kuva jatkuu palkin kohdalle
-   valikkolinkkien taakse. Häivytys ja himmennys on leivottu tiedostoon
-   (tyokalut/tee-heron-profiilikuva.py), koska taustakerrokselle ei voi antaa
-   mask-imagea eikä filteriä.
-
-   Kerrokset ylhäältä alas: profiilikuva (yläosa lisätummennettu valikko-
-   linkkien luettavuuden vuoksi), heron tavallinen tummennus, latukuva.
-   Kuva on keskellä olevan puun oikealla puolella: puu on heron keskilinjalla,
-   ja calc(50% + 170px) asettaa 260 px leveän kuvan vasemman reunan 40 px
-   keskilinjan oikealle puolelle. Pystysijainti 106px on heron laatikossa, joka
-   alkaa 76 px näkyvän alueen yläpuolelta -> kuvan yläreuna 30 px ruudun
-   yläreunasta. */
-.page-hero--cv {
-  --cv-x: calc(50% + 170px);
-  --cv-y: 106px;
-  --cv-w: 260px;
-  background-image: url('markus-hytonen-hero.png'),
-    var(--hero-tint), var(--img-hero-latu);
-  background-image:
-    image-set(url('markus-hytonen-hero.webp') type('image/webp'), url('markus-hytonen-hero.png') type('image/png')),
-    var(--hero-tint), var(--img-hero-latu);
-  background-size: var(--cv-w) auto, auto, cover;
-  background-position: var(--cv-x) var(--cv-y), 0 0, center 12%;
-  background-repeat: no-repeat;
-  /* kuva 366 px korkea + häivytetty alareuna */
-  min-height: 540px;
+/* Profiilikuva Profiili-otsikon oikealla puolella valkoisella pohjalla.
+   Kuvan reunat on häivytetty läpinäkyviksi tiedostoon
+   (tyokalut/tee-profiilikuva.py), joten pohjan on oltava sama valkoinen
+   kuin häivytyksen oletus — siksi osio on .section-white eikä --color-bg. */
+.section-white {
+  background: #fff;
 }
 
-/* Teksti vasempaan sarakkeeseen, oikea puolisko jää kuvalle */
-.person-hero {
+/* Kuva nostettu lähemmäs heroa. Kahden luokan valitsin, jotta sääntö voittaa
+   myös mobiilitaitekohdan .section-paddingin, joka tulee lähdejärjestyksessä
+   myöhemmin. */
+.section.profile-section {
+  padding-top: var(--space-5);
+}
+
+/* Otsikko vasemmalle, kuva keskelle leipätekstin palstaa sen yläpuolelle.
+   Tasaleveät sivusarakkeet (1fr auto 1fr) keskittävät kuvan palstaan otsikon
+   leveydestä riippumatta. */
+.profile-heading {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--space-5);
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.profile-heading .section-heading {
+  margin-bottom: 0;
+}
+
+.profile-photo {
+  width: 200px;
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .page-hero .hero-text a {
@@ -1546,17 +1550,9 @@ main:has(> .section-founder:last-child) + .site-footer {
     max-width: 240px;
   }
 
-  /* Kuva oikeaan reunaan nimen yläpuolelle. Teksti työnnetään kuvan alle
-     yläpaddingilla: kuva on taustakerros eikä vie tilaa. */
-  .page-hero--cv {
-    --cv-w: 210px;
-    background-position: right 4vw top var(--cv-y), 0 0, center 12%;
-    min-height: 0;
-    padding-top: 400px;
-  }
-
-  .person-hero {
-    grid-template-columns: minmax(0, 1fr);
+  /* Kuva pysyy otsikon vierellä, mutta pienempänä */
+  .profile-photo {
+    width: 140px;
   }
 }
 
